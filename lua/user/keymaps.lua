@@ -85,3 +85,4 @@ keymap("v", "<leader>lf", "<cmd>lua vim.lsp.buf.format{ async = true }<cr>", opt
 
 keymap('n', '<leader>e', vim.diagnostic.open_float, opts)
 keymap('n', '<leader>ca', vim.lsp.buf.code_action, opts)
+
