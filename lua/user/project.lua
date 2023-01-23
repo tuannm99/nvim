@@ -23,7 +23,7 @@ require('beacon').setup({
 	enable = true,
 	size = 1000,
 	fade = true,
-	minimal_jump = 5,
+	minimal_jump = 1,
 	show_jumps = true,
 	focus_gained = true,
 	shrink = true,

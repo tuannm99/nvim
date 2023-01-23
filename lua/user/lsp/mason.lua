@@ -8,6 +8,7 @@ local servers = {
 	"jsonls",
 	"yamlls",
   "emmet_ls",
+  "angularls",
 }
 
 local settings = {
