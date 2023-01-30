@@ -9,7 +9,7 @@ if not status_ok then
 end
 
 configs.setup {
-  ensure_installed = { "vue", "html", "lua", "markdown", "markdown_inline", "bash", "python", "typescript", "javascript", "tsx" }, -- put the language you want in this array
+  ensure_installed = { "vue", "html", "lua", "markdown", "markdown_inline", "bash", "python", "typescript", "javascript", "tsx",  "go", "glimmer" }, -- put the language you want in this array
   -- ensure_installed = "all", -- one of "all" or a list of languages
   ignore_install = { "" }, -- List of parsers to ignore installing
   sync_install = false, -- install languages synchronously (only applied to `ensure_installed`)
@@ -23,7 +23,7 @@ configs.setup {
     enable = true,
     filetypes = {
       'html', 'javascript', 'typescript', 'javascriptreact', 'typescriptreact', 'svelte', 'vue', 'tsx', 'jsx', 'rescript',
-      'css', 'lua', 'xml', 'php', 'markdown'
+      'css', 'lua', 'xml', 'php', 'markdown', 'go'
     },
   },
 
