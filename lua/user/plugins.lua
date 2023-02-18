@@ -112,8 +112,18 @@ return packer.startup(function(use)
   use { "rcarriga/nvim-dap-ui", commit = "1cd4764221c91686dcf4d6b62d7a7b2d112e0b13" }
   use { "ravenxrz/DAPInstall.nvim", commit = "8798b4c36d33723e7bba6ed6e2c202f84bb300de" }
 
-  -- cursor blink
+  -- smooth apperence
   use { "rainbowhxch/beacon.nvim" }
+  use { "gen740/SmoothCursor.nvim",
+    config = function()
+      require('smoothcursor').setup()
+    end
+  }
+  use { "karb94/neoscroll.nvim",
+    config = function()
+      require('neoscroll').setup()
+    end
+  }
 
   -- cursor
   -- use { 'mg979/vim-visual-multi' }
