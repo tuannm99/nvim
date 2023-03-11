@@ -26,8 +26,8 @@ set -as terminal-overrides ',*:Hls=\E]8;id=%p1%s;%p2%s\E\\:Hlr=\E]8;;\E\\'
 set-environment -g SHLVL 1
 
 # remap prefix from 'C-b' to 'C-a'
-unbind C-b
-set-option -g prefix C-a; bind-key C-a send-prefix
+# unbind C-b
+# set-option -g prefix C-a; bind-key C-a send-prefix
 if-shell 'test -n "$SSH_CLIENT"' "set-option -g prefix2 C-q; bind-key C-q send-prefix"
 
 # toggle control between outer and nested session
