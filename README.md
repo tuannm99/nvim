@@ -1,0 +1,200 @@
+# neovim config using lua for neovim >= 0.8 (should be 0.10)
+
+### tmux config
+
+```python3
+# see https://github.com/tmux-plugins/tmux-sensible
+set -g @almost-sensible 'on'
+
+if-shell '[[ "$TERM" == "xterm-kitty" ]]' {
+  set -g default-terminal "xterm-kitty"
+} {
+  set -g default-terminal "tmux-256color"
+}
+
+set-option -g focus-events on
+
+# # Allow undercurls for terminals that support them.
+# set -as terminal-overrides ',*:Smulx=\E[4::%p1%dm'
+# # Allow coloured undercurls for terminals that support them.
+# set -as terminal-overrides ',*:Setulc=\E[58::2::%p1%{65536}%/%d::%p1%{256}%/%{255}%&%d::%p1%{255}%&%d%;m'
+# # Allow hyperlinks with patch
+# set -as terminal-overrides ',*:Hls=\E]8;id=%p1%s;%p2%s\E\\:Hlr=\E]8;;\E\\'
+
+set-option -sa terminal-overrides ",xterm*:Tc"
+
+# make sure we always start at 1, even when invoked from a .tmux wrapper script
+set-environment -g SHLVL 1
+
+# remap prefix from 'C-b' to 'C-a'
+unbind C-b
+set-option -g prefix M-e; bind-key M-e send-prefix
+if-shell 'test -n "$SSH_CLIENT"' "set-option -g prefix2 C-q; bind-key C-q send-prefix"
+
+# toggle control between outer and nested session
+bind -T root F12  \
+  set prefix None \;\
+  set key-table off \;\
+  if -F '#{pane_in_mode}' 'send-keys -X cancel' \;\
+  refresh-client -S \;\
+
+bind -T off F12 \
+  set -u prefix \;\
+  set -u key-table \;\
+  refresh-client -S
+
+# configuration of the status line
+bind '\' set -g status
+if-shell "[[ $(tmux lsw | wc -l) -le 1 ]]" 'set -g status'
+set -g status-left-length 32
+set -g status-right-length 150
+set -g status-fg '#737aa2'
+set -g status-bg '#1D202F'
+
+set -g pane-border-style fg=colour245
+set -g pane-active-border-style 'fg=#7aa2f7'
+set -g message-style fg=black,bg=brightwhite,bold
+# set -g window-status-bell-style fg=brightred,bg=yellow,nobold
+# set -g window-status-activity-style bg=red
+
+set -g base-index 1
+setw -g pane-base-index 1
+
+# %hidden TB_STATUS_BG='#1d202f'
+# %hidden TB_WIN_BG='#1f2335'
+# %hidden TB_INACTIVE_FG='#737aa2'
+# %hidden TB_WIN_NAME='#{s/ //:window_name}'
+# %hidden TB_WIN_BASENAME='#{s/ //:#{b:window_name}}'
+# %hidden TB_WIN_FMT='#{?#{e|<=:#{n:#{E:TB_WIN_NAME}},20},#{=/20/…:#{E:TB_WIN_BASENAME}},#{E:TB_WIN_NAME}}'
+# %hidden TB_WIN_ICON='#(tmux-status-utils icon "#W")'
+# %hidden TB_WIN_BOXNUM='#[fg=#{TB_INACTIVE_FG}]#{?#{==:#{window_panes},1},, #(tmux-status-utils boxnum "#{window_panes}")}'
+# %hidden TB_PREFIX_STYLE='#{?client_prefix,#[bg=#292e42],#[bg=#24283b]}'
+# %hidden TB_WIN_STATUS_STYLE='#{?window_bell_flag,#[fg=#f1e05a],#{?window_activity_flag,#[fg=white],#[fg=#{TB_INACTIVE_FG}]}}'
+# %hidden TB_PLAYING_WIDGET='#[fg=#{TB_INACTIVE_FG}]#[bg=#{TB_WIN_BG}]#[nobold]#(tmux-spotify-info)'
+# %hidden TB_TIME_WIDGET='#[bg=#{TB_WIN_BG}] %a %d %b, %I:%M %p '
+# %hidden TB_SESSION_WIDGET='#{?#{==:#{n:#{S:,}},1},,#[bg=#{TB_STATUS_BG}]#[fg=white]#[bold] #S }'
+# %hidden TB_WIN_PREFIX='▎'
+# %hidden TB_WIN_PREFIX_FG='#[fg=#{TB_STATUS_BG}]'
+# %hidden TB_WIN_CURR_PREFIX_FG='#[fg=#7aa2f7]'
+
+# set -g status-left ""
+# set -g window-status-format '#[noreverse]#[bg=#{TB_WIN_BG}]#{E:TB_WIN_PREFIX_FG}#{TB_WIN_PREFIX}    #[fg=#{TB_INACTIVE_FG}]#{E:TB_WIN_ICON}#{E:TB_WIN_STATUS_STYLE} #{E:TB_WIN_FMT}   #{E:TB_WIN_BOXNUM}  '
+# set -g window-status-separator ""
+# set -g window-status-current-format '#{E:TB_PREFIX_STYLE}#{TB_WIN_CURR_PREFIX_FG}#{TB_WIN_PREFIX}    #[fg=white]#{E:TB_WIN_ICON}#[fg=white]#[noreverse]#[bold] #{E:TB_WIN_FMT}   #{E:TB_WIN_BOXNUM}  '
+# set -g status-right '#{E:TB_SESSION_WIDGET}#{E:TB_PLAYING_WIDGET} #[bg=#{TB_STATUS_BG}] #{E:TB_TIME_WIDGET}'
+
+# visual notification of activity in other windows
+setw -g monitor-activity on
+# set -g window-status-activity-attr bold
+# set -g visual-bell on
+
+# automatically renumber window numbers on closing a pane (tmux >= 1.7).
+set -g renumber-windows on
+
+# dynamically update window titles
+setw -g allow-rename off
+setw -g automatic-rename off
+set -g set-titles on # set title with macOS term proxy-title instead
+set -g set-titles-string 'Tuan DZ' #'#W'  # program name
+set -g set-titles-string '#W'  # program name
+
+# increase history limit up from default of 2000
+set -g history-limit 100000
+
+# split panes open in same working directory
+# bind '"' split-window -c "#{pane_current_path}"
+bind '%' split-window -h -c "#{pane_current_path}"
+bind '"' if-shell '[[ "$DISABLE_AUTO_TITLE" == true ]]' \
+       'split-window -c "#{pane_current_path}" -e "DISABLE_AUTO_TITLE=true"' \
+       'split-window -c "#{pane_current_path}"' # TODO condition doesn't work
+
+# Vim style pane selection
+bind h select-pane -L
+bind j select-pane -D
+bind k select-pane -U
+bind l select-pane -R
+bind 'C-h' select-pane -L
+bind 'C-j' select-pane -D
+bind 'C-k' select-pane -U
+bind 'C-l' select-pane -R
+
+bind -r n next-window
+bind -r p previous-window
+bind -r o select-pane -t :.+
+
+bind 'a' last-window
+bind 'w' choose-window -Z -F "#W #F"
+bind 'C-Space' next-layout
+
+# mouse control
+set-option -g -q mouse on
+
+# rotate panes while zoomed
+bind 'C-o' if-shell 'test #{window_zoomed_flag} -eq 1' 'rotate-window; resize-pane -Z' 'rotate-window'
+
+# move windows
+bind '<' if-shell 'test #{window_index} -eq 1' 'new-window -d; swap-window -t -1; kill-window; select-window -t "\{end\}"' 'swap-window -d -t -1'
+bind '>' if-shell 'test #{window_end_flag} -eq 1' 'move-window -t 0' 'swap-window -d -t +1'
+
+# swap pane active pane with marked
+bind '|' swap-pane
+
+# switch to last window
+bind '9' select-window -t '{end}'
+bind '0' select-window -t '{start}'
+
+# incremental search up of buffer
+bind-key -T copy-mode-vi / command-prompt -i -p "search up" "send -X search-backward-incremental \"%%%\""
+bind-key -T copy-mode-vi ? command-prompt -i -p "search up" "send -X search-backward-incremental \"%%%\""
+bind-key '/' copy-mode\; command-prompt -i -p "search up" "send -X search-backward-incremental \"%%%\""
+bind-key '?' copy-mode\; command-prompt -i -p "search up" "send -X search-backward-incremental \"%%%\""
+
+# search back to last prompt
+bind-key 'b' copy-mode\; send -X search-backward "# $USER"
+
+# setup 'v' to begin selection as in Vim
+set-window-option -g mode-keys vi
+unbind-key -T copy-mode-vi 'v'
+bind-key -T copy-mode-vi 'y' send -X copy-pipe "reattach-to-user-namespace pbcopy"  # macOS
+#bind-key -T copy-mode-vi 'y' send -X copy-pipe "xclip -i -f -selection primary | xclip -i -selection clipboard"  # Linux
+bind-key -T copy-mode-vi 'v' send -X begin-selection
+bind-key -T copy-mode-vi 'V' send -X select-line
+bind-key -T copy-mode-vi 'C-v' send -X rectangle-toggle
+
+# clear selection on click; makes for nicer consecutive drags.
+# bind-key -T copy-mode-vi MouseDown1Pane send-keys -X clear-selection
+
+# Stay in copy mode on drag end.
+# (Would use `bind-key -T copy-mode-vi MouseDragEnd1Pane send-keys -X
+# stop-selection` but it is a bit glitchy.)
+unbind-key -T copy-mode-vi MouseDragEnd1Pane
+
+# Scroll 1 lines at a time instead of default 5; don't extend dragged selections.
+bind-key -T copy-mode-vi WheelUpPane select-pane\; send-keys -t'{mouse}' -X clear-selection\; send-keys -t'{mouse}' -X -N 1 scroll-up
+bind-key -T copy-mode-vi WheelDownPane select-pane\; send-keys -t'{mouse}' -X clear-selection\; send-keys -t'{mouse}' -X -N 1 scroll-down
+
+# Make double and triple click work outside of copy mode (already works inside it with default bindings).
+bind-key -T root DoubleClick1Pane if-shell -Ft'{mouse}' '#{alternate_on}' "send-keys -M" "copy-mode -t'{mouse}'; send-keys -t'{mouse}' -X select-word"
+bind-key -T root TripleClick1Pane if-shell -Ft'{mouse}' '#{alternate_on}' "send-keys -M" "copy-mode -t'{mouse}'; send-keys -t'{mouse}' -X select-line"
+
+# Don't exit copy mode on double or triple click.
+bind-key -T copy-mode-vi DoubleClick1Pane if-shell -Ft'{mouse}' '#{alternate_on}' "send-keys -M" "copy-mode -t'{mouse}'; send-keys -t'{mouse}' -X select-word"
+bind-key -T copy-mode-vi TripleClick1Pane if-shell -Ft'{mouse}' '#{alternate_on}' "send-keys -M" "copy-mode -t'{mouse}'; send-keys -t'{mouse}' -X select-line"
+
+# For those times when C-c and q are not enough.
+bind-key -T copy-mode-vi Escape send-keys -X cancel
+
+# Don't wrap searches; it's super confusing given tmux's reverse-ordering of
+# position info in copy mode.
+#set -w -g wrap-search off
+
+# List of plugins
+set -g @plugin 'tmux-plugins/tpm'
+set -g @plugin 'tmux-plugins/tmux-sensible'
+set -g @plugin 'tmux-plugins/tmux-open'
+#set -g @plugin 'nhdaly/tmux-better-mouse-mode'
+
+# Initializes TMUX plugin manager.
+# Keep this line at the very bottom of tmux.conf.
+run -b '~/.tmux/plugins/tpm/tpm'
+```
