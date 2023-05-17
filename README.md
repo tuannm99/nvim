@@ -26,11 +26,6 @@ set-option -sa terminal-overrides ",xterm*:Tc"
 # make sure we always start at 1, even when invoked from a .tmux wrapper script
 set-environment -g SHLVL 1
 
-# remap prefix from 'C-b' to 'C-a'
-unbind C-b
-set-option -g prefix M-e; bind-key M-e send-prefix
-if-shell 'test -n "$SSH_CLIENT"' "set-option -g prefix2 C-q; bind-key C-q send-prefix"
-
 # toggle control between outer and nested session
 bind -T root F12  \
   set prefix None \;\
@@ -60,28 +55,28 @@ set -g message-style fg=black,bg=brightwhite,bold
 set -g base-index 1
 setw -g pane-base-index 1
 
-# %hidden TB_STATUS_BG='#1d202f'
-# %hidden TB_WIN_BG='#1f2335'
-# %hidden TB_INACTIVE_FG='#737aa2'
-# %hidden TB_WIN_NAME='#{s/ //:window_name}'
-# %hidden TB_WIN_BASENAME='#{s/ //:#{b:window_name}}'
-# %hidden TB_WIN_FMT='#{?#{e|<=:#{n:#{E:TB_WIN_NAME}},20},#{=/20/…:#{E:TB_WIN_BASENAME}},#{E:TB_WIN_NAME}}'
-# %hidden TB_WIN_ICON='#(tmux-status-utils icon "#W")'
-# %hidden TB_WIN_BOXNUM='#[fg=#{TB_INACTIVE_FG}]#{?#{==:#{window_panes},1},, #(tmux-status-utils boxnum "#{window_panes}")}'
-# %hidden TB_PREFIX_STYLE='#{?client_prefix,#[bg=#292e42],#[bg=#24283b]}'
-# %hidden TB_WIN_STATUS_STYLE='#{?window_bell_flag,#[fg=#f1e05a],#{?window_activity_flag,#[fg=white],#[fg=#{TB_INACTIVE_FG}]}}'
-# %hidden TB_PLAYING_WIDGET='#[fg=#{TB_INACTIVE_FG}]#[bg=#{TB_WIN_BG}]#[nobold]#(tmux-spotify-info)'
-# %hidden TB_TIME_WIDGET='#[bg=#{TB_WIN_BG}] %a %d %b, %I:%M %p '
-# %hidden TB_SESSION_WIDGET='#{?#{==:#{n:#{S:,}},1},,#[bg=#{TB_STATUS_BG}]#[fg=white]#[bold] #S }'
-# %hidden TB_WIN_PREFIX='▎'
-# %hidden TB_WIN_PREFIX_FG='#[fg=#{TB_STATUS_BG}]'
-# %hidden TB_WIN_CURR_PREFIX_FG='#[fg=#7aa2f7]'
+%hidden TB_STATUS_BG='#1d202f'
+%hidden TB_WIN_BG='#1f2335'
+%hidden TB_INACTIVE_FG='#737aa2'
+%hidden TB_WIN_NAME='#{s/ //:window_name}'
+%hidden TB_WIN_BASENAME='#{s/ //:#{b:window_name}}'
+%hidden TB_WIN_FMT='#{?#{e|<=:#{n:#{E:TB_WIN_NAME}},20},#{=/20/…:#{E:TB_WIN_BASENAME}},#{E:TB_WIN_NAME}}'
+%hidden TB_WIN_ICON='#(tmux-status-utils icon "#W")'
+%hidden TB_WIN_BOXNUM='#[fg=#{TB_INACTIVE_FG}]#{?#{==:#{window_panes},1},, #(tmux-status-utils boxnum "#{window_panes}")}'
+%hidden TB_PREFIX_STYLE='#{?client_prefix,#[bg=#292e42],#[bg=#24283b]}'
+%hidden TB_WIN_STATUS_STYLE='#{?window_bell_flag,#[fg=#f1e05a],#{?window_activity_flag,#[fg=white],#[fg=#{TB_INACTIVE_FG}]}}'
+%hidden TB_PLAYING_WIDGET='#[fg=#{TB_INACTIVE_FG}]#[bg=#{TB_WIN_BG}]#[nobold]#(tmux-spotify-info)'
+%hidden TB_TIME_WIDGET='#[bg=#{TB_WIN_BG}] %a %d %b, %I:%M %p '
+%hidden TB_SESSION_WIDGET='#{?#{==:#{n:#{S:,}},1},,#[bg=#{TB_STATUS_BG}]#[fg=white]#[bold] #S }'
+%hidden TB_WIN_PREFIX='▎'
+%hidden TB_WIN_PREFIX_FG='#[fg=#{TB_STATUS_BG}]'
+%hidden TB_WIN_CURR_PREFIX_FG='#[fg=#7aa2f7]'
 
-# set -g status-left ""
-# set -g window-status-format '#[noreverse]#[bg=#{TB_WIN_BG}]#{E:TB_WIN_PREFIX_FG}#{TB_WIN_PREFIX}    #[fg=#{TB_INACTIVE_FG}]#{E:TB_WIN_ICON}#{E:TB_WIN_STATUS_STYLE} #{E:TB_WIN_FMT}   #{E:TB_WIN_BOXNUM}  '
-# set -g window-status-separator ""
-# set -g window-status-current-format '#{E:TB_PREFIX_STYLE}#{TB_WIN_CURR_PREFIX_FG}#{TB_WIN_PREFIX}    #[fg=white]#{E:TB_WIN_ICON}#[fg=white]#[noreverse]#[bold] #{E:TB_WIN_FMT}   #{E:TB_WIN_BOXNUM}  '
-# set -g status-right '#{E:TB_SESSION_WIDGET}#{E:TB_PLAYING_WIDGET} #[bg=#{TB_STATUS_BG}] #{E:TB_TIME_WIDGET}'
+set -g status-left ""
+set -g window-status-format '#[noreverse]#[bg=#{TB_WIN_BG}]#{E:TB_WIN_PREFIX_FG}#{TB_WIN_PREFIX}    #[fg=#{TB_INACTIVE_FG}]#{E:TB_WIN_ICON}#{E:TB_WIN_STATUS_STYLE} #{E:TB_WIN_FMT}   #{E:TB_WIN_BOXNUM}  '
+set -g window-status-separator ""
+set -g window-status-current-format '#{E:TB_PREFIX_STYLE}#{TB_WIN_CURR_PREFIX_FG}#{TB_WIN_PREFIX}    #[fg=white]#{E:TB_WIN_ICON}#[fg=white]#[noreverse]#[bold] #{E:TB_WIN_FMT}   #{E:TB_WIN_BOXNUM}  '
+set -g status-right '#{E:TB_SESSION_WIDGET}#{E:TB_PLAYING_WIDGET} #[bg=#{TB_STATUS_BG}] #{E:TB_TIME_WIDGET}'
 
 # visual notification of activity in other windows
 setw -g monitor-activity on
@@ -155,8 +150,8 @@ bind-key 'b' copy-mode\; send -X search-backward "# $USER"
 # setup 'v' to begin selection as in Vim
 set-window-option -g mode-keys vi
 unbind-key -T copy-mode-vi 'v'
-bind-key -T copy-mode-vi 'y' send -X copy-pipe "reattach-to-user-namespace pbcopy"  # macOS
-#bind-key -T copy-mode-vi 'y' send -X copy-pipe "xclip -i -f -selection primary | xclip -i -selection clipboard"  # Linux
+# bind-key -T copy-mode-vi 'y' send -X copy-pipe "reattach-to-user-namespace pbcopy"  # macOS
+bind-key -T copy-mode-vi 'y' send -X copy-pipe "xclip -i -f -selection primary | xclip -i -selection clipboard"  # Linux
 bind-key -T copy-mode-vi 'v' send -X begin-selection
 bind-key -T copy-mode-vi 'V' send -X select-line
 bind-key -T copy-mode-vi 'C-v' send -X rectangle-toggle
@@ -187,6 +182,35 @@ bind-key -T copy-mode-vi Escape send-keys -X cancel
 # Don't wrap searches; it's super confusing given tmux's reverse-ordering of
 # position info in copy mode.
 #set -w -g wrap-search off
+
+# with nvim
+# Smart pane switching with awareness of Vim splits.
+# See: https://github.com/christoomey/vim-tmux-navigator
+
+# decide whether we're in a Vim process
+is_vim="ps -o state= -o comm= -t '#{pane_tty}' \
+    | grep -iqE '^[^TXZ ]+ +(\\S+\\/)?g?(view|n?vim?x?)(diff)?$'"
+
+bind-key -n 'C-h' if-shell "$is_vim" 'send-keys C-h' 'select-pane -L'
+bind-key -n 'C-j' if-shell "$is_vim" 'send-keys C-j' 'select-pane -D'
+bind-key -n 'C-k' if-shell "$is_vim" 'send-keys C-k' 'select-pane -U'
+bind-key -n 'C-l' if-shell "$is_vim" 'send-keys C-l' 'select-pane -R'
+
+tmux_version='$(tmux -V | sed -En "s/^tmux ([0-9]+(.[0-9]+)?).*/\1/p")'
+
+if-shell -b '[ "$(echo "$tmux_version < 3.0" | bc)" = 1 ]' \
+    "bind-key -n 'C-\\' if-shell \"$is_vim\" 'send-keys C-\\'  'select-pane -l'"
+if-shell -b '[ "$(echo "$tmux_version >= 3.0" | bc)" = 1 ]' \
+    "bind-key -n 'C-\\' if-shell \"$is_vim\" 'send-keys C-\\\\'  'select-pane -l'"
+
+bind-key -n 'C-Space' if-shell "$is_vim" 'send-keys C-Space' 'select-pane -t:.+'
+
+bind-key -T copy-mode-vi 'C-h' select-pane -L
+bind-key -T copy-mode-vi 'C-j' select-pane -D
+bind-key -T copy-mode-vi 'C-k' select-pane -U
+bind-key -T copy-mode-vi 'C-l' select-pane -R
+bind-key -T copy-mode-vi 'C-\' select-pane -l
+bind-key -T copy-mode-vi 'C-Space' select-pane -t:.+
 
 # List of plugins
 set -g @plugin 'tmux-plugins/tpm'
