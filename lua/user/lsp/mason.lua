@@ -1,6 +1,6 @@
 local servers = {
   "prismals",
-  -- "gopls",
+  "gopls",
 	"sumneko_lua",
 	"cssls",
 	"html",

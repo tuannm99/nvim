@@ -144,6 +144,7 @@ return packer.startup(function(use)
   use { "folke/todo-comments.nvim", requires = "nvim-lua/plenary.nvim", commit = "7b8f174de9cac9d892c6ffda3778b1e4f4288d44" }
   use { "mbbill/undotree" }
   use { "ThePrimeagen/harpoon" }
+  use { "alexghergh/nvim-tmux-navigation" }
 
   -- cursor
   -- use { 'mg979/vim-visual-multi' }
