@@ -15,11 +15,6 @@ local function file_exists(filename)
     return false
 end
 
-local eslint = nil
-if file_exists('.eslintrc.json') or file_exists('.eslintrc.js') then
-  eslint = diagnostics.eslint
-end
-
 null_ls.setup {
   debug = false,
   sources = {
@@ -27,9 +22,9 @@ null_ls.setup {
       extra_filetypes = { "toml" },
       extra_args = { "--single-quote" },
     },
-    eslint,
-    formatting.black.with { extra_args = { "--fast" } },
-    diagnostics.flake8,
+    diagnostics.eslint,
+    formatting.black.with({ extra_args  = { "--fast" }}),
+    diagnostics.pyright,
     formatting.stylua,
   },
 }

@@ -1,7 +1,7 @@
 local servers = {
   "prismals",
-  "gopls",
-	"sumneko_lua",
+  -- "gopls",
+	-- "sumneko_lua",
 	"cssls",
 	"html",
 	"tsserver",
@@ -12,7 +12,7 @@ local servers = {
   "emmet_ls",
   "angularls",
   "tailwindcss",
-  "rust_analyzer"
+  -- "rust_analyzer"
 }
 
 local settings = {
