@@ -12,7 +12,7 @@ local servers = {
   "emmet_ls",
   "angularls",
   "tailwindcss",
-  -- "rust_analyzer"
+  "rust_analyzer"
 }
 
 local settings = {
