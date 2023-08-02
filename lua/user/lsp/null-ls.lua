@@ -7,12 +7,12 @@ local formatting = null_ls.builtins.formatting
 local diagnostics = null_ls.builtins.diagnostics
 
 local function file_exists(filename)
-    local file = io.open(filename, "r")
-    if (file) then
-        file:close()
-        return true
-    end
-    return false
+  local file = io.open(filename, "r")
+  if file then
+    file:close()
+    return true
+  end
+  return false
 end
 
 null_ls.setup {
@@ -23,8 +23,7 @@ null_ls.setup {
       extra_args = { "--single-quote" },
     },
     diagnostics.eslint,
-    formatting.black.with({ extra_args  = { "--fast" }}),
-    diagnostics.pyright,
+    formatting.black.with { extra_args = { "--fast" } },
     formatting.stylua,
   },
 }

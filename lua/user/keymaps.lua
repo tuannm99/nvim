@@ -8,7 +8,7 @@ keymap("", "<Space>", "<Nop>", opts)
 vim.g.mapleader = " "
 
 keymap("", "q", "<Nop>", opts)
-keymap('n', '<c-z>', '<nop>', opts)
+keymap("n", "<c-z>", "<nop>", opts)
 
 -- Modes
 --   normal_mode = "n",
@@ -86,8 +86,18 @@ keymap("n", "<leader>du", "<cmd>lua require'dapui'.toggle()<cr>", opts)
 keymap("n", "<leader>dwh", "<cmd>lua require'dap.ui.widgets'.hover()<cr>", opts)
 keymap("n", "<leader>dwp", "<cmd>lua require'dap.ui.widgets'.preview()<cr>", opts)
 -- keymap("n", "<leader>dv", "<cmd>lua require'dap.ui.variables'.visual_hover()<cr>", opts)
-keymap("n", "<leader>dwc", "<cmd>lua local widgets = require'dap.ui.widgets'; widgets.centered_float(widgets.scopes)<cr>", opts)
-keymap("n", "<leader>dwf", "<cmd>lua local widgets = require'dap.ui.widgets'; widgets.centered_float(widgets.frames)<cr>", opts)
+keymap(
+  "n",
+  "<leader>dwc",
+  "<cmd>lua local widgets = require'dap.ui.widgets'; widgets.centered_float(widgets.scopes)<cr>",
+  opts
+)
+keymap(
+  "n",
+  "<leader>dwf",
+  "<cmd>lua local widgets = require'dap.ui.widgets'; widgets.centered_float(widgets.frames)<cr>",
+  opts
+)
 
 keymap("n", "<leader>fdc", ":Telescope dap commands<cr>", opts)
 keymap("n", "<leader>fdf", ":Telescope dap frames <cr>", opts)
@@ -99,56 +109,61 @@ keymap("n", "<leader>fdf", ":Telescope dap frames <cr>", opts)
 keymap("n", "<leader>lf", "<cmd>lua vim.lsp.buf.format{ async = true }<cr>", opts)
 keymap("v", "<leader>lf", "<cmd>lua vim.lsp.buf.format{ async = true }<cr>", opts)
 
-keymap('n', '<leader>e', vim.diagnostic.open_float, opts)
-keymap('n', '<leader>ca', vim.lsp.buf.code_action, opts)
-keymap('n', '<leader>m', ":MaximizerToggle<CR>", opts)
+keymap("n", "<leader>e", vim.diagnostic.open_float, opts)
+keymap("n", "<leader>ca", vim.lsp.buf.code_action, opts)
+keymap("n", "<leader>m", ":MaximizerToggle<CR>", opts)
 
 -- todo
 keymap("n", "<leader>tf", ":TodoQuickFix<cr>", opts)
 keymap("n", "<leader>tt", ":TodoTelescope<cr>", opts)
 
--- multi cursor
-
-
 -- custom log
 function Custom_log()
   local filetype = vim.bo.filetype
-  local allowed_js_filetypes = {'javascript', 'typescript', 'javascriptreact', 'typescriptreact', 'html', 'pug'}
+  local allowed_js_filetypes = { "javascript", "typescript", "javascriptreact", "typescriptreact", "html", "pug" }
+  local allowed_python_filetypes = { "python" }
+
   if vim.tbl_contains(allowed_js_filetypes, filetype) then
     local line = vim.api.nvim_win_get_cursor(0)[1]
-    local variable = vim.fn.expand("<cword>")
-    local filename = vim.fn.expand("%:t")
-    local output = '\nconsole.log(\'❤❤❤ tuannm debug: filename:[' .. filename .. '] line:[' .. line .. '] variable:[' .. variable .. ']\', ' .. variable .. ')'
+    local variable = vim.fn.expand "<cword>"
+    local filename = vim.fn.expand "%:t"
+    local output = "\nconsole.log('❤❤❤ tuannm: [" .. filename .. "][" .. line .. "][" .. variable .. "]', " .. variable .. ")"
     vim.api.nvim_input(output)
-    vim.api.nvim_command('startinsert!')
-    vim.api.nvim_input('<Esc>')
+    vim.api.nvim_command "startinsert!"
+    vim.api.nvim_input "<Esc>"
+  elseif vim.tbl_contains(allowed_python_filetypes, filetype) then
+    local line = vim.api.nvim_win_get_cursor(0)[1]
+    local variable = vim.fn.expand "<cword>"
+    local filename = vim.fn.expand "%:t"
+    local output = "\nprint('❤❤❤ tuannm: [" .. filename .. "][" .. line .. "][" .. variable .. "]', " .. variable .. ")"
+    vim.api.nvim_input(output)
+    vim.api.nvim_command "startinsert!"
+    vim.api.nvim_input "<Esc>"
   else
-    vim.api.nvim_feedkeys('<C-l>', 'n', true)
+    vim.api.nvim_feedkeys("<C-l>", "n", true)
   end
- -- TODO: add more language
+  -- TODO: add more language
 end
-
 
 keymap("n", "<leader>cl", ":lua Custom_log()<CR>", opts)
 
 -- Define the key mapping function
 function FoldToggle()
   -- Check if a fold exists at the current cursor position
-  if vim.fn.foldclosed(vim.fn.line('.')) ~= -1 then
+  if vim.fn.foldclosed(vim.fn.line ".") ~= -1 then
     -- If a fold exists, toggle the fold under the cursor between folded and unfolded states
-    vim.cmd(':normal! za<CR>')
+    vim.cmd ":normal! za<CR>"
   else
     -- If no fold exists, fold the text from the current cursor position to the matching closing bracket or parenthesis
-    vim.cmd(':normal! zf%<CR>')
+    vim.cmd ":normal! zf%<CR>"
   end
 end
 
 -- Define the key mapping using the foldToggle function
-keymap('n', 'ff', ':lua FoldToggle()<CR>', opts)
+keymap("n", "ff", ":lua FoldToggle()<CR>", opts)
 
 -- harpoon
-keymap('n', '<A-m>', ':lua require("harpoon.mark").add_file()<CR>', opts)
-keymap('n', '<A-u>', ':lua require("harpoon.ui").toggle_quick_menu()<CR>', opts)
-keymap('n', '<A-l>', ':lua require("harpoon.ui").nav_next()<CR>', opts)
-keymap('n', '<A-h>', ':lua require("harpoon.ui").nav_prev()<CR>', opts)
-
+keymap("n", "<A-m>", ':lua require("harpoon.mark").add_file()<CR>', opts)
+keymap("n", "<A-u>", ':lua require("harpoon.ui").toggle_quick_menu()<CR>', opts)
+keymap("n", "<A-l>", ':lua require("harpoon.ui").nav_next()<CR>', opts)
+keymap("n", "<A-h>", ':lua require("harpoon.ui").nav_prev()<CR>', opts)

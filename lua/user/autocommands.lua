@@ -57,3 +57,16 @@ vim.api.nvim_create_autocmd({ "BufWinEnter" }, {
     end
   end,
 })
+
+local venv_path = vim.fn.getcwd() .. "/venv"
+if vim.fn.isdirectory(venv_path) == 1 then
+  -- Activate the virtual environment
+  vim.env.VIRTUAL_ENV = venv_path
+  vim.env.PATH = venv_path .. "/bin:" .. vim.env.PATH
+  vim.g.python3_host_prog = venv_path .. "/bin/python3"
+
+  local site_packages = vim.fn.glob(venv_path .. "/lib/python*/site-packages")
+  if vim.fn.empty(site_packages) == 0 then
+    vim.g.python3_host_extra_paths = { site_packages }
+  end
+end
