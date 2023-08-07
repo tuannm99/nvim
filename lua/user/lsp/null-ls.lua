@@ -23,7 +23,7 @@ null_ls.setup {
       extra_args = { "--single-quote" },
     },
     diagnostics.eslint,
-    formatting.black.with { extra_args = { "--fast" } },
+    formatting.autopep8.with { extra_args = {} },
     formatting.stylua,
   },
 }

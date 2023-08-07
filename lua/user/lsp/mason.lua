@@ -10,6 +10,7 @@ local servers = {
   "jsonls",
   "yamlls",
   "emmet_ls",
+  "eslint",
   -- "angularls",
   "tailwindcss",
   -- "rust_analyzer",
