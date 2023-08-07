@@ -3,12 +3,12 @@ local colorscheme = "catppuccin"
 
 local status_ok, catppuccin = pcall(require, colorscheme)
 if not status_ok then
-  return
+    return
 end
 
 catppuccin.setup({
     flavour = "mocha", -- latte, frappe, macchiato, mocha
-    background = { -- :h background
+    background = {     -- :h background
         light = "latte",
         dark = "mocha",
     },
@@ -21,7 +21,7 @@ catppuccin.setup({
         percentage = 0.15,
     },
     no_italic = false, -- Force no italic
-    no_bold = false, -- Force no bold
+    no_bold = false,   -- Force no bold
     styles = {
         comments = { "italic" },
         conditionals = { "italic" },
@@ -51,5 +51,5 @@ catppuccin.setup({
 
 local status_ok, _ = pcall(vim.cmd.colorscheme, colorscheme)
 if not status_ok then
-  return
+    return
 end
