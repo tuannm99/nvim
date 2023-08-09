@@ -45,8 +45,8 @@ packer.init {
 return packer.startup(function(use)
     -- My plugins here
     use { "wbthomason/packer.nvim" } -- Have packer manage itself
-    use { "nvim-lua/plenary.nvim" } -- Useful lua functions used by lots of plugins
-    use { "windwp/nvim-autopairs" } -- Autopairs, integrates with both cmp and treesitter
+    use { "nvim-lua/plenary.nvim" }  -- Useful lua functions used by lots of plugins
+    use { "windwp/nvim-autopairs" }  -- Autopairs, integrates with both cmp and treesitter
     use {
         "windwp/nvim-ts-autotag",
         config = function()
@@ -89,8 +89,8 @@ return packer.startup(function(use)
     use { "hrsh7th/cmp-nvim-lua" }
 
     -- snippets
-    use { "saadparwaiz1/cmp_luasnip" }   -- snippet completions
-    use { "L3MON4D3/LuaSnip" }           --snippet engine
+    use { "saadparwaiz1/cmp_luasnip" }     -- snippet completions
+    use { "L3MON4D3/LuaSnip" }             --snippet engine
     use { "rafamadriz/friendly-snippets" } -- a bunch of snippets to use
 
     -- LSP
@@ -135,6 +135,7 @@ return packer.startup(function(use)
     use { "mbbill/undotree" }
     use { "ThePrimeagen/harpoon" }
     use { "alexghergh/nvim-tmux-navigation" }
+    use { "mfussenegger/nvim-dap-python" }
 
     -- cursor
     -- use { 'mg979/vim-visual-multi' }

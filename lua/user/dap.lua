@@ -42,8 +42,20 @@ dap_virtual_text.setup {
 -- run DIInstall jsnode + chrome; if need more check out documentation,
 -- if dap_install not provide adapter that needed so need to download adapter and map args adapters by hand
 dap_install.setup {}
-dap_install.config("python", {})
--- dap_install.config("jsnode", {})
+
+-- python
+local function get_venv()
+    local cwd = vim.fn.getcwd()
+    if vim.fn.executable(cwd .. '/venv/bin/python') == 1 then
+        return cwd .. '/venv/bin/python'
+    elseif vim.fn.executable(cwd .. '/.venv/bin/python') == 1 then
+        return cwd .. '/.venv/bin/python'
+    else
+        return '/usr/bin/python3'
+    end
+end
+require('dap-python').setup(get_venv())
+
 -- nodejs
 dap.adapters["pwa-node"] = {
     type = "executable",
@@ -55,6 +67,7 @@ dap.adapters["chrome"] = {
     command = "node",
     args = { dbg_path .. "chrome/vscode-chrome-debug/out/src/chromeDebug.js", "${port}" },
 }
+
 
 -- TODO: update typesript configuration + add more language adapter such us python, golang ...
 local adapter_configs = {
@@ -103,6 +116,7 @@ local adapter_configs = {
             webRoot = "${workspaceFolder}/public"
         }
     },
+
 }
 
 local function choose_config()
@@ -121,7 +135,7 @@ local function choose_config()
         local language = { "javascript", "typescript" }
         local language_choice = vim.fn.inputlist({
             "\n1: javascript",
-            "2: typescript",
+            "2: typescript"
         })
         local chosen_language = language[language_choice]
         adapter = adapter_configs[adapter][chosen_language]
@@ -179,7 +193,7 @@ dapui.setup {
     },
     floating = {
         max_height = 0.9,
-        max_width = 0.5,         -- Floats will be treated as percentage of your screen.
+        max_width = 0.5,             -- Floats will be treated as percentage of your screen.
         border = vim.g.border_chars, -- Border style. Can be 'single', 'double' or 'rounded'
         mappings = {
             close = { "q", "<Esc>" },

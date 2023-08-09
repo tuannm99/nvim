@@ -128,7 +128,7 @@ function Custom_log()
         local variable = vim.fn.expand "<cword>"
         local filename = vim.fn.expand "%:t"
         local output = "\nconsole.log('❤❤❤ tuannm: [" ..
-        filename .. "][" .. line .. "][" .. variable .. "]', " .. variable .. ")"
+            filename .. "][" .. line .. "][" .. variable .. "]', " .. variable .. ")"
         vim.api.nvim_input(output)
         vim.api.nvim_command "startinsert!"
         vim.api.nvim_input "<Esc>"
@@ -137,7 +137,7 @@ function Custom_log()
         local variable = vim.fn.expand "<cword>"
         local filename = vim.fn.expand "%:t"
         local output = "\nprint('❤❤❤ tuannm: [" ..
-        filename .. "][" .. line .. "][" .. variable .. "]', " .. variable .. ")"
+            filename .. "][" .. line .. "][" .. variable .. "]', " .. variable .. ")"
         vim.api.nvim_input(output)
         vim.api.nvim_command "startinsert!"
         vim.api.nvim_input "<Esc>"
