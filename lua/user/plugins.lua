@@ -45,13 +45,13 @@ packer.init {
 return packer.startup(function(use)
     -- My plugins here
     use { "wbthomason/packer.nvim" } -- Have packer manage itself
-    use { "nvim-lua/plenary.nvim" }  -- Useful lua functions used by lots of plugins
-    use { "windwp/nvim-autopairs" }  -- Autopairs, integrates with both cmp and treesitter
+    use { "nvim-lua/plenary.nvim" } -- Useful lua functions used by lots of plugins
+    use { "windwp/nvim-autopairs" } -- Autopairs, integrates with both cmp and treesitter
     use {
         "windwp/nvim-ts-autotag",
         config = function()
-            require("user.treesitter")
-        end
+            require "user.treesitter"
+        end,
     }
     use { "numToStr/Comment.nvim" }
     use { "JoosepAlviste/nvim-ts-context-commentstring" }
@@ -59,15 +59,15 @@ return packer.startup(function(use)
     use { "kyazdani42/nvim-tree.lua", commit = "7282f7de8aedf861fe0162a559fc2b214383c51c" }
     -- use { "akinsho/bufferline.nvim" }
     use {
-        'akinsho/bufferline.nvim',
+        "akinsho/bufferline.nvim",
         tag = "*",
-        requires = 'nvim-tree/nvim-web-devicons',
+        requires = "nvim-tree/nvim-web-devicons",
         config = function()
             require("bufferline").setup {}
-        end
+        end,
     }
     use { "moll/vim-bbye" }
-    use { 'nvim-lualine/lualine.nvim', requires = { 'nvim-tree/nvim-web-devicons', opt = true } }
+    use { "nvim-lualine/lualine.nvim", requires = { "nvim-tree/nvim-web-devicons", opt = true } }
     -- use { 'j-hui/fidget.nvim', tag = 'legacy' }
     use { "akinsho/toggleterm.nvim" }
     use { "ahmedkhalf/project.nvim" }
@@ -79,6 +79,7 @@ return packer.startup(function(use)
 
     -- Colorschemes
     use { "catppuccin/nvim", as = "catppuccin" }
+    use { "Mofiqul/dracula.nvim" }
 
     -- cmp plugins
     use { "hrsh7th/nvim-cmp" } -- The completion plugin
@@ -89,8 +90,8 @@ return packer.startup(function(use)
     use { "hrsh7th/cmp-nvim-lua" }
 
     -- snippets
-    use { "saadparwaiz1/cmp_luasnip" }     -- snippet completions
-    use { "L3MON4D3/LuaSnip" }             --snippet engine
+    use { "saadparwaiz1/cmp_luasnip" }   -- snippet completions
+    use { "L3MON4D3/LuaSnip" }           --snippet engine
     use { "rafamadriz/friendly-snippets" } -- a bunch of snippets to use
 
     -- LSP
@@ -127,15 +128,24 @@ return packer.startup(function(use)
             vim.o.timeout = true
             vim.o.timeoutlen = 300
             require("which-key").setup {}
-        end
+        end,
     }
 
-    use { "folke/todo-comments.nvim", requires = "nvim-lua/plenary.nvim", commit =
-    "7b8f174de9cac9d892c6ffda3778b1e4f4288d44" }
+    use {
+        "folke/todo-comments.nvim",
+        requires = "nvim-lua/plenary.nvim",
+        commit = "7b8f174de9cac9d892c6ffda3778b1e4f4288d44",
+    }
     use { "mbbill/undotree" }
     use { "ThePrimeagen/harpoon" }
     use { "alexghergh/nvim-tmux-navigation" }
     use { "mfussenegger/nvim-dap-python" }
+
+    use {
+        "heavenshell/vim-jsdoc",
+    }
+    use { "linux-cultist/venv-selector.nvim", require = { "neovim/nvim-lspconfig", "nvim-telescope/telescope.nvim" } }
+    use { "LunarVim/bigfile.nvim" }
 
     -- cursor
     -- use { 'mg979/vim-visual-multi' }

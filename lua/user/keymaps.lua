@@ -119,32 +119,31 @@ keymap("n", "<leader>tt", ":TodoTelescope<cr>", opts)
 
 -- custom log
 function Custom_log()
-    local filetype = vim.bo.filetype
-    local allowed_js_filetypes = { "javascript", "typescript", "javascriptreact", "typescriptreact", "html", "pug" }
-    local allowed_python_filetypes = { "python" }
+  local filetype = vim.bo.filetype
+  local allowed_js_filetypes = {'javascript', 'typescript', 'javascriptreact', 'typescriptreact', 'html', 'pug'}
+  local allowed_python_filetypes = {'python'}
 
-    if vim.tbl_contains(allowed_js_filetypes, filetype) then
-        local line = vim.api.nvim_win_get_cursor(0)[1]
-        local variable = vim.fn.expand "<cword>"
-        local filename = vim.fn.expand "%:t"
-        local output = "\nconsole.log('❤❤❤ tuannm: [" ..
-            filename .. "][" .. line .. "][" .. variable .. "]', " .. variable .. ")"
-        vim.api.nvim_input(output)
-        vim.api.nvim_command "startinsert!"
-        vim.api.nvim_input "<Esc>"
-    elseif vim.tbl_contains(allowed_python_filetypes, filetype) then
-        local line = vim.api.nvim_win_get_cursor(0)[1]
-        local variable = vim.fn.expand "<cword>"
-        local filename = vim.fn.expand "%:t"
-        local output = "\nprint('❤❤❤ tuannm: [" ..
-            filename .. "][" .. line .. "][" .. variable .. "]', " .. variable .. ")"
-        vim.api.nvim_input(output)
-        vim.api.nvim_command "startinsert!"
-        vim.api.nvim_input "<Esc>"
-    else
-        vim.api.nvim_feedkeys("<C-l>", "n", true)
-    end
-    -- TODO: add more language
+  if vim.tbl_contains(allowed_js_filetypes, filetype) then
+    local line = vim.api.nvim_win_get_cursor(0)[1]
+    local variable = vim.fn.expand("<cword>")
+    local filename = vim.fn.expand("%:t")
+    local output = '\nconsole.log(\'❤❤❤ tuannm: [' .. filename .. '][' .. line .. '][' .. variable .. ']\', ' .. variable .. ')'
+    vim.api.nvim_input(output)
+    vim.api.nvim_command('startinsert!')
+    vim.api.nvim_input('<Esc>')
+  elseif  vim.tbl_contains(allowed_python_filetypes, filetype) then
+    local line = vim.api.nvim_win_get_cursor(0)[1]
+    local variable = vim.fn.expand("<cword>")
+    local filename = vim.fn.expand("%:t")
+    local output = '\nprint(\'❤❤❤ tuannm: [' .. filename .. '][' .. line .. '][' .. variable .. ']\', ' .. variable .. ')'
+    vim.api.nvim_input(output)
+    vim.api.nvim_command('startinsert!')
+    vim.api.nvim_input('<Esc>')
+    
+  else
+    vim.api.nvim_feedkeys('<C-l>', 'n', true)
+  end
+ -- TODO: add more language
 end
 
 keymap("n", "<leader>cl", ":lua Custom_log()<CR>", opts)

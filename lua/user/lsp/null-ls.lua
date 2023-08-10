@@ -20,7 +20,7 @@ null_ls.setup {
     sources = {
         formatting.prettier.with {
             extra_filetypes = { "toml" },
-            extra_args = { "--single-quote" },
+            extra_args = { "--single-quote", "--no-semi", "--tab-width=4", "--print-width=100" },
         },
         diagnostics.eslint,
         formatting.autopep8.with { extra_args = {} },

@@ -7,12 +7,10 @@ local actions = require "telescope.actions"
 
 telescope.setup {
     defaults = {
-
         prompt_prefix = " ",
         selection_caret = " ",
         path_display = { "smart" },
-        file_ignore_patterns = { ".git/", "node_modules", "__pycache__/" },
-
+        file_ignore_patterns = { ".git/", "node_modules", "__pycache__/", "build/", "dist/", "target/" },
         mappings = {
             i = {
                 ["<Down>"] = actions.cycle_history_next,
@@ -24,4 +22,4 @@ telescope.setup {
     },
 }
 
-telescope.load_extension('dap')
+telescope.load_extension "dap"
