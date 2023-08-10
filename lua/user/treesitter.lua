@@ -21,7 +21,7 @@ configs.setup {
     },
     indent = {
         enable = false,
-        -- disable = { "python", "css", "rust" }
+        disable = { "python", "css", "rust" }
     },
     autotag = {
         enable = true,
