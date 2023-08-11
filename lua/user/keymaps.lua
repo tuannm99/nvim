@@ -54,7 +54,6 @@ keymap("v", "<", "<gv", opts)
 keymap("v", ">", ">gv", opts)
 
 -- Plugins --
-
 keymap("n", "<C-n>", ":NvimTreeToggle<CR>", opts)
 
 -- Telescope
@@ -85,19 +84,8 @@ keymap("n", "<leader>du", "<cmd>lua require'dapui'.toggle()<cr>", opts)
 
 keymap("n", "<leader>dwh", "<cmd>lua require'dap.ui.widgets'.hover()<cr>", opts)
 keymap("n", "<leader>dwp", "<cmd>lua require'dap.ui.widgets'.preview()<cr>", opts)
--- keymap("n", "<leader>dv", "<cmd>lua require'dap.ui.variables'.visual_hover()<cr>", opts)
-keymap(
-    "n",
-    "<leader>dwc",
-    "<cmd>lua local widgets = require'dap.ui.widgets'; widgets.centered_float(widgets.scopes)<cr>",
-    opts
-)
-keymap(
-    "n",
-    "<leader>dwf",
-    "<cmd>lua local widgets = require'dap.ui.widgets'; widgets.centered_float(widgets.frames)<cr>",
-    opts
-)
+keymap("n", "<leader>dwc", "<cmd>lua local widgets = require'dap.ui.widgets'; widgets.centered_float(widgets.scopes)<cr>", opts)
+keymap("n", "<leader>dwf", "<cmd>lua local widgets = require'dap.ui.widgets'; widgets.centered_float(widgets.frames)<cr>", opts)
 
 keymap("n", "<leader>fdc", ":Telescope dap commands<cr>", opts)
 keymap("n", "<leader>fdf", ":Telescope dap frames <cr>", opts)
@@ -164,7 +152,7 @@ end
 keymap("n", "ff", ":lua FoldToggle()<CR>", opts)
 
 -- harpoon
-keymap("n", "<A-m>", ':lua require("harpoon.mark").add_file()<CR>', opts)
-keymap("n", "<A-u>", ':lua require("harpoon.ui").toggle_quick_menu()<CR>', opts)
-keymap("n", "<A-l>", ':lua require("harpoon.ui").nav_next()<CR>', opts)
-keymap("n", "<A-h>", ':lua require("harpoon.ui").nav_prev()<CR>', opts)
+keymap("n", "<leader>sa", ':lua require("harpoon.mark").add_file()<CR>', opts)
+keymap("n", "<leader>sm", ':lua require("harpoon.ui").toggle_quick_menu()<CR>', opts)
+keymap("n", "<leader>sp", ':lua require("harpoon.ui").nav_next()<CR>', opts)
+keymap("n", "<leader>sn", ':lua require("harpoon.ui").nav_prev()<CR>', opts)
