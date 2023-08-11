@@ -10,7 +10,7 @@ end
 
 configs.setup {
     ensure_installed = { "vue", "html", "lua", "markdown", "markdown_inline", "bash", "python", "typescript",
-        "javascript", "tsx", "go", "glimmer", "pug", "prisma" },
+        "jsdoc", "javascript", "tsx", "go", "glimmer", "pug", "prisma" },
     ignore_install = { "" },
     sync_install = false,
 
