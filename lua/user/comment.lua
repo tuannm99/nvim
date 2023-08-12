@@ -5,8 +5,8 @@ end
 
 comment.setup {
     pre_hook = function(ctx)
-        -- Only calculate commentstring for tsx/jsx filetypes
-        if vim.bo.filetype == "typescriptreact" or vim.bo.filetype == "javascriptreact" then
+        -- Only calculate commentstring for js/tsx/jsx filetypes for reactjs
+        if vim.bo.filetype == "typescriptreact" or vim.bo.filetype == "javascriptreact" or vim.bo.filetype == "javascript" then
             local U = require "Comment.utils"
 
             -- Determine whether to use linewise or blockwise commentstring
