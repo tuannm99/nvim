@@ -70,3 +70,52 @@ if vim.fn.isdirectory(venv_path) == 1 then
         vim.g.python3_host_extra_paths = { site_packages }
     end
 end
+
+  -- colors = {
+  --   bg = "#282A36",
+  --   fg = "#F8F8F2",
+  --   selection = "#44475A",
+  --   comment = "#6272A4",
+  --   red = "#FF5555",
+  --   orange = "#FFB86C",
+  --   yellow = "#F1FA8C",
+  --   green = "#50fa7b",
+  --   purple = "#BD93F9",
+  --   cyan = "#8BE9FD",
+  --   pink = "#FF79C6",
+  --   bright_red = "#FF6E6E",
+  --   bright_green = "#69FF94",
+  --   bright_yellow = "#FFFFA5",
+  --   bright_blue = "#D6ACFF",
+  --   bright_magenta = "#FF92DF",
+  --   bright_cyan = "#A4FFFF",
+  --   bright_white = "#FFFFFF",
+  --   menu = "#21222C",
+  --   visual = "#3E4452",
+  --   gutter_fg = "#4B5263",
+  --   nontext = "#3B4048",
+  --   white = "#ABB2BF",
+  --   black = "#191A21",
+  -- },
+
+vim.cmd [[
+function MyCustomHighlights()
+    hi semshiLocal           ctermfg=209 guifg=#ff875f
+    hi semshiGlobal          ctermfg=214 guifg=#8BE9FD cterm=bold
+    hi semshiImported        ctermfg=214 guifg=#8BE9FD cterm=bold gui=bold
+    hi semshiParameter       ctermfg=75  guifg=#5fafff
+    hi semshiParameterUnused ctermfg=117 guifg=#87d7ff cterm=underline gui=underline
+    hi semshiFree            ctermfg=218 guifg=#ffafd7
+    hi semshiBuiltin         ctermfg=207 guifg=#ff5fff
+    hi semshiAttribute       ctermfg=49  guifg=#00ffaf
+    hi semshiSelf            ctermfg=249 guifg=#b2b2b2
+    hi semshiUnresolved      ctermfg=226 guifg=#ffff00 cterm=underline gui=underline
+    hi semshiSelected        ctermfg=231 guifg=#ffffff ctermbg=161 guibg=#FF79C6
+
+    hi semshiErrorSign       ctermfg=231 guifg=#ffffff ctermbg=160 guibg=#d70000
+    hi semshiErrorChar       ctermfg=231 guifg=#ffffff ctermbg=160 guibg=#d70000
+    sign define semshiError text=E> texthl=semshiErrorSignendfunction
+endfunction
+autocmd FileType python call MyCustomHighlights()
+autocmd ColorScheme * call MyCustomHighlights()
+]]
