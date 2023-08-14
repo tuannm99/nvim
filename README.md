@@ -216,6 +216,9 @@ bind-key -T copy-mode-vi 'C-Space' select-pane -t:.+
 set -g @plugin 'tmux-plugins/tpm'
 set -g @plugin 'tmux-plugins/tmux-sensible'
 set -g @plugin 'tmux-plugins/tmux-open'
+set -g @plugin 'tmux-plugins/tmux-resurrect'
+set -g @resurrect-strategy-nvim 'session'
+
 #set -g @plugin 'nhdaly/tmux-better-mouse-mode'
 
 # Initializes TMUX plugin manager.

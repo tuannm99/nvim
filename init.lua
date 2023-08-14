@@ -1,23 +1,10 @@
-require "user.impatient"
-require "user.options"
-require "user.plugins"
-require "user.autocommands"
-require "user.colorscheme"
-require "user.cmp"
-require "user.telescope"
-require "user.gitsigns"
-require "user.treesitter"
-require "user.autopairs"
-require "user.comment"
-require "user.nvim-tree"
-require "user.lualine"
-require "user.toggleterm"
-require "user.project"
-require "user.illuminate"
-require "user.indentline"
-require "user.lsp"
-require "user.dap"
-require "user.filetype"
-require "user.keymaps"
-require "user.tmux-navigation"
--- require("venv-selector").setup({})
+require "config.options"
+require "config.keymaps"
+require "config.lazy"
+
+vim.api.nvim_create_autocmd("User", {
+    pattern = "VeryLazy",
+    callback = function()
+        require "config.autocmds"
+    end,
+})
