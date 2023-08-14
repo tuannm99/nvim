@@ -17,7 +17,7 @@ configs.setup {
     highlight = {
         enable = true,
         use_languagetree = true,
-        disable = {},
+        disable = {"python"},
     },
     indent = {
         enable = false,
