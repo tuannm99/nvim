@@ -103,19 +103,20 @@ function MyCustomHighlights()
     hi semshiLocal           ctermfg=209 guifg=#ff875f
     hi semshiGlobal          ctermfg=214 guifg=#8BE9FD cterm=bold
     hi semshiImported        ctermfg=214 guifg=#8BE9FD cterm=bold gui=bold
-    hi semshiParameter       ctermfg=75  guifg=#5fafff
+    hi semshiParameter       ctermfg=75  guifg=#FFB86C
     hi semshiParameterUnused ctermfg=117 guifg=#87d7ff cterm=underline gui=underline
     hi semshiFree            ctermfg=218 guifg=#ffafd7
-    hi semshiBuiltin         ctermfg=207 guifg=#ff5fff
+    hi semshiBuiltin         ctermfg=207 guifg=#50fa7b
     hi semshiAttribute       ctermfg=49  guifg=#00ffaf
     hi semshiSelf            ctermfg=249 guifg=#b2b2b2
-    hi semshiUnresolved      ctermfg=226 guifg=#ffff00 cterm=underline gui=underline
-    hi semshiSelected        ctermfg=231 guifg=#ffffff ctermbg=161 guibg=#FF79C6
+    hi semshiUnresolved      ctermfg=226 guifg=#ABB2BF cterm=underline gui=underline
+    hi semshiSelected        ctermfg=231 guifg=#ffffff ctermbg=161 guibg=#3E4452
 
     hi semshiErrorSign       ctermfg=231 guifg=#ffffff ctermbg=160 guibg=#d70000
     hi semshiErrorChar       ctermfg=231 guifg=#ffffff ctermbg=160 guibg=#d70000
     sign define semshiError text=E> texthl=semshiErrorSignendfunction
 endfunction
+
 autocmd FileType python call MyCustomHighlights()
 autocmd ColorScheme * call MyCustomHighlights()
 ]]
