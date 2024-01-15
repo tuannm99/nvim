@@ -1,7 +1,16 @@
 return {
     { "saadparwaiz1/cmp_luasnip" },
-    { "L3MON4D3/LuaSnip" },
-    { "rafamadriz/friendly-snippets" },
+
+    {
+        "L3MON4D3/LuaSnip",
+        version = "v2.*",
+        build = "make install_jsregexp",
+        dependencies = { "rafamadriz/friendly-snippets" },
+        event = "VeryLazy",
+        config = function()
+            require("luasnip.loaders.from_vscode").lazy_load {}
+        end,
+    },
 
     {
         "hrsh7th/nvim-cmp",
@@ -23,8 +32,6 @@ return {
             if not snip_status_ok then
                 return
             end
-
-            require("luasnip/loaders/from_vscode").lazy_load()
 
             local check_backspace = function()
                 local col = vim.fn.col "." - 1
