@@ -1,9 +1,15 @@
 return {
     {
+        "nvim-telescope/telescope-fzf-native.nvim",
+        build =
+        "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
+    },
+    {
         "nvim-telescope/telescope.nvim",
         dependencies = {
             "ThePrimeagen/harpoon",
             "nvim-telescope/telescope-dap.nvim",
+            "nvim-telescope/telescope-fzf-native.nvim",
         },
         event = "VeryLazy",
         config = function()
@@ -29,10 +35,19 @@ return {
                         },
                     },
                 },
+                extensions = {
+                    fzf = {
+                        fuzzy = true,                   -- false will only do exact matching
+                        override_generic_sorter = true, -- override the generic sorter
+                        override_file_sorter = true,    -- override the file sorter
+                        case_mode = "ignore_case",       -- or "ignore_case" or "respect_case"
+                    },
+                },
             }
 
             telescope.load_extension "dap"
             telescope.load_extension "harpoon"
+            telescope.load_extension "fzf"
         end,
     },
     {

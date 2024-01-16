@@ -22,7 +22,10 @@ return {
                     group_empty = true,
                 },
                 filters = {
-                    dotfiles = true,
+                    dotfiles = false,
+                },
+                diagnostics = {
+                    enable = true,
                 },
             }
         end,
