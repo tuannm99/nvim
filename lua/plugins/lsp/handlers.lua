@@ -65,14 +65,25 @@ local function lsp_keymaps(bufnr)
     local opts = { noremap = true, silent = true }
     local keymap = vim.api.nvim_buf_set_keymap
 
-    keymap(bufnr, "n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
-    keymap(bufnr, "n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
-    keymap(bufnr, "n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
-    keymap(bufnr, "n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
-    keymap(bufnr, "n", "ge", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
-    keymap(bufnr, "n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
-    keymap(bufnr, "n", "<leader>lsa", "<cmd>lua vim.lsp.buf.code_action()<cr>", opts)
-    keymap(bufnr, "n", "<leader>lr", "<cmd>lua vim.lsp.buf.rename()h<cr>", opts)
+    -- keymap(bufnr, "n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
+    -- keymap(bufnr, "n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
+    -- keymap(bufnr, "n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
+    -- keymap(bufnr, "n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
+    -- keymap(bufnr, "n", "ge", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
+    -- keymap(bufnr, "n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
+    -- keymap(bufnr, "n", "<leader>lsa", "<cmd>lua vim.lsp.buf.code_action()<cr>", opts)
+    -- keymap(bufnr, "n", "<leader>lr", "<cmd>lua vim.lsp.buf.rename()<cr>", opts)
+
+    keymap(bufnr, "n", "gD", "<cmd>Lspsaga goto_type_definition<CR>", opts)
+    keymap(bufnr, "n", "gd", "<cmd>Lspsaga goto_definition<CR>", opts)
+    -- keymap(bufnr, "n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
+    keymap(bufnr, "n", "gr", "<cmd>Lspsaga peek_definition<CR>", opts)
+    keymap(bufnr, "n", "ge", "<cmd>Lspsaga show_cursor_diagnostic<CR>", opts)
+    keymap(bufnr, "n", "K", "<cmd>Lspsaga hover_doc<CR>", opts)
+    keymap(bufnr, "n", "<leader>lsa", "<cmd>Lspsaga code_action<cr>", opts)
+    keymap(bufnr, "n", "<leader>lr", "<cmd>Lspsaga rename<cr>", opts)
+    keymap(bufnr, "n", "<leader>lso", "<cmd>Lspsaga outline<cr>", opts)
+    keymap(bufnr, "n", "<leader>lsf", "<cmd>Lspsaga finder<cr>", opts)
 end
 
 M.on_attach = function(client, bufnr)

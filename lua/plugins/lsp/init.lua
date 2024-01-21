@@ -28,9 +28,28 @@ return {
         "neovim/nvim-lspconfig",
         event = "BufReadPre",
         lazy = false,
+        init_options = {
+            userLanguages = {
+                eelixir = "html-eex",
+                eruby = "erb",
+                rust = "html",
+            },
+        },
         config = function()
             require("plugins.lsp.handlers").setup()
         end,
+    },
+
+    {
+        'nvimdev/lspsaga.nvim',
+        event = "LspAttach",
+        config = function()
+            require("lspsaga").setup {}
+        end,
+        dependencies = {
+            'nvim-treesitter/nvim-treesitter',
+            'nvim-tree/nvim-web-devicons'
+        }
     },
 
     {

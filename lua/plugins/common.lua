@@ -34,7 +34,7 @@ return {
 
     {
         "ThePrimeagen/harpoon",
-        event = "VeryLazy",
+        lazy = false,
     },
 
     {
