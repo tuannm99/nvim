@@ -58,6 +58,10 @@ return {
                     "php",
                     "markdown",
                     "go",
+                    "rust",
+                    "glimmer",
+                    "handlebars",
+                    "hbs",
                 },
             },
             -- context_commentstring = {
