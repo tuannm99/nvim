@@ -188,4 +188,14 @@ return {
             require "plugins.lsp.externals.ts-tools"
         end,
     },
+
+    {
+        "mrcjkb/rustaceanvim",
+        dependencies = { "neovim/nvim-lspconfig" },
+        version = '^4', -- Recommended
+        ft = { 'rust' },
+        config = function()
+            require("plugins.lsp.externals.rust").setup()
+        end,
+    },
 }
