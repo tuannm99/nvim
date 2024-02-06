@@ -10,7 +10,8 @@ require("typescript-tools").setup {
         client.server_capabilities.documentFormattingProvider = false
         client.server_capabilities.documentRangeFormattingProvider = false
 
-        illuminate.on_attach(client)
+        -- illuminate.on_attach(client)
+        require("plugins.lsp.handlers").on_attach(client, bufnr)
     end,
 
     settings = {
