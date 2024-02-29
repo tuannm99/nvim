@@ -42,7 +42,7 @@ return {
 
     {
         "windwp/nvim-ts-autotag",
-        lazy = true,
+        lazy = false,
     },
 
     {
