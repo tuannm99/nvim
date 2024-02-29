@@ -21,6 +21,7 @@ function rust_tools.setup()
                 hover_actions = {
                     auto_focus = true,
                 },
+                enable_clippy = true,
             },
             server = {
                 on_attach = require("plugins.lsp.handlers").on_attach,

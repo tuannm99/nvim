@@ -162,7 +162,7 @@ function Custom_log()
             .. line
             .. "]["
             .. variable
-            .. ']: {}", '
+            .. ']: {:?}", '
             .. variable
             .. ");"
         vim.api.nvim_input(output)

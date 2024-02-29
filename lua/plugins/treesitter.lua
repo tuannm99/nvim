@@ -25,6 +25,7 @@ return {
                 "pug",
                 "prisma",
                 "rust",
+                "terraform",
             },
             ignore_install = { "" },
             sync_install = false,
