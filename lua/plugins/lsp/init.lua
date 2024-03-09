@@ -54,7 +54,8 @@ return {
 
     {
         "nvimtools/none-ls.nvim",
-        lazy = true,
+        event = "LspAttach",
+        commit = "de747e01f732fbb9e48d3b87a7653c633835c9e7",
         config = function()
             local null_ls_status_ok, null_ls = pcall(require, "null-ls")
             if not null_ls_status_ok then
@@ -85,6 +86,7 @@ return {
                     is_file_exists ".prettierrc"
                     or is_file_exists ".prettierrc.json"
                     or is_file_exists ".prettierrc.js"
+                    or is_file_exists ".prettierrc"
                 then
                     -- use default
                     return formatting.prettier
