@@ -54,7 +54,7 @@ return {
 
     {
         "nvimtools/none-ls.nvim",
-        lazy = false,
+        lazy = true,
         config = function()
             local null_ls_status_ok, null_ls = pcall(require, "null-ls")
             if not null_ls_status_ok then
@@ -192,8 +192,8 @@ return {
     {
         "mrcjkb/rustaceanvim",
         dependencies = { "neovim/nvim-lspconfig" },
-        version = '^4', -- Recommended
-        ft = { 'rust' },
+        version = "^4", -- Recommended
+        ft = { "rust" },
         config = function()
             require("plugins.lsp.externals.rust").setup()
         end,
