@@ -42,6 +42,7 @@ return {
 
     {
         "nvimdev/lspsaga.nvim",
+        commit = "3112b7aba57653199ad20198f477d94781bb2310",
         event = "LspAttach",
         config = function()
             require("lspsaga").setup {}
