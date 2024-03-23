@@ -1,11 +1,16 @@
 return {
     {
         "weirongxu/plantuml-previewer.vim",
-        lazy = true,
+        lazy = false,
     },
 
     {
         "aklt/plantuml-syntax",
-        lazy = true,
+        lazy = false,
+    },
+
+    {
+        "tyru/open-browser.vim",
+        lazy = false,
     },
 }
