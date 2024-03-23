@@ -28,6 +28,7 @@ local servers = {
     "eslint",
     "lua_ls",
     "tailwindcss",
+    "sqlls",
     -- "tsserver",
 }
 require("mason-lspconfig").setup {

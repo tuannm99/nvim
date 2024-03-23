@@ -107,6 +107,7 @@ return {
             local sources = {
                 formatting.autopep8.with { extra_args = { "--max-line-length", "120", "--experimental" } },
                 formatting.stylua.with {},
+                formatting.sql_formatter.with {},
             }
 
             if should_config_eslint() then

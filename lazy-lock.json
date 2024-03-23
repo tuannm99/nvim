@@ -42,6 +42,8 @@
   "nvim-ts-autotag": { "branch": "main", "commit": "531f48334c422222aebc888fd36e7d109cb354cd" },
   "nvim-ts-context-commentstring": { "branch": "main", "commit": "7ab799a9792f7cf3883cf28c6a00ad431f3d382a" },
   "nvim-web-devicons": { "branch": "master", "commit": "75df79feb02d5e0ec114e447453775d4d291ea03" },
+  "plantuml-previewer.vim": { "branch": "master", "commit": "1dd4d0f2b09cd80a217f76d82f93830dbbe689b3" },
+  "plantuml-syntax": { "branch": "master", "commit": "309c15c77794433f276fb09eb4e3b8f381003cfd" },
   "plenary.nvim": { "branch": "master", "commit": "f7adfc4b3f4f91aab6caebf42b3682945fbc35be" },
   "rustaceanvim": { "branch": "master", "commit": "c787f5b0fafc29f9487b1314b19515451fd990e7" },
   "sonarlint.nvim": { "branch": "main", "commit": "f75fb20383e3472e2275a75b49b2c222ef644627" },
