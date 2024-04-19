@@ -25,7 +25,10 @@ return {
     {
         "rcarriga/nvim-dap-ui",
         event = "VeryLazy", -- for debuggin icon
-        dependencies = { "mfussenegger/nvim-dap" },
+        dependencies = {
+            "mfussenegger/nvim-dap",
+            "nvim-neotest/nvim-nio",
+        },
         config = function()
             require "plugins.dap.ui"
         end,

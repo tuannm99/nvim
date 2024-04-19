@@ -25,6 +25,29 @@ function rust_tools.setup()
             },
             server = {
                 on_attach = require("plugins.lsp.handlers").on_attach,
+                default_settings = {
+                    ["rust-analyzer"] = {
+                        imports = {
+                            granularity = {
+                                group = "module",
+                            },
+                            prefix = "self",
+                        },
+                        cargo = {
+                            buildScripts = {
+                                enable = true,
+                            },
+                        },
+                        procMacro = {
+                            enable = true,
+                        },
+                        diagnostics = {
+                            experimental = {
+                                enable = true,
+                            },
+                        },
+                    },
+                },
             },
         }
     end
