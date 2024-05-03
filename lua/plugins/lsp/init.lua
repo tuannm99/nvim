@@ -1,12 +1,12 @@
 return {
-    {
-        "j-hui/fidget.nvim",
-        tag = "v1.2.0",
-        lazy = false,
-        config = function()
-            require("fidget").setup {}
-        end,
-    },
+    -- {
+    --     "j-hui/fidget.nvim",
+    --     tag = "v1.2.0",
+    --     lazy = false,
+    --     config = function()
+    --         require("fidget").setup {}
+    --     end,
+    -- },
     -- {
     --     "stevearc/aerial.nvim"
     -- },
