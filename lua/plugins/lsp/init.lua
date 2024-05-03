@@ -177,13 +177,13 @@ return {
         end,
     },
 
-    {
-        "https://gitlab.com/schrieveslaach/sonarlint.nvim",
-        lazy = false,
-        config = function()
-            require "plugins.lsp.externals.sonarlint"
-        end,
-    },
+    -- {
+    --     "https://gitlab.com/schrieveslaach/sonarlint.nvim",
+    --     lazy = false,
+    --     config = function()
+    --         require "plugins.lsp.externals.sonarlint"
+    --     end,
+    -- },
 
     {
         "pmizio/typescript-tools.nvim",

@@ -29,7 +29,7 @@ return {
 
     {
         "moll/vim-bbye",
-        event = "VeryLazy"
+        event = "VeryLazy",
     },
 
     {
@@ -67,6 +67,6 @@ return {
 
     {
         "LunarVim/bigfile.nvim",
-        event = "VeryLazy",
+        lazy = false,
     },
 }
