@@ -226,9 +226,4 @@ keymap("n", "<leader>m", "<cmd>:MaximizerToggle<CR>")
 keymap("n", "<leader>u", "<cmd>:UndotreeToggle<CR>")
 
 -- trouble -> until find comfort keymap
-keymap("n", "<leader>tt", function() require("trouble").toggle() end)
-keymap("n", "<leader>tw", function() require("trouble").toggle "workspace_diagnostics" end)
-keymap("n", "<leader>td", function() require("trouble").toggle "document_diagnostics" end)
-keymap("n", "<leader>tq", function() require("trouble").toggle "quickfix" end)
-keymap("n", "<leader>tl", function() require("trouble").toggle "loclist" end)
-keymap("n", "<leader>tr", function() require("trouble").toggle "lsp_references" end)
+keymap("n", "<leader>tt", "<cmd>:Trouble<CR>")
