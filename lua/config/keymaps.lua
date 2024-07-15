@@ -168,6 +168,22 @@ function Custom_log()
         vim.api.nvim_input(output)
         vim.api.nvim_command "startinsert!"
         vim.api.nvim_input "<Esc>"
+    elseif filetype == "go" then
+        local line = vim.api.nvim_win_get_cursor(0)[1]
+        local variable = vim.fn.expand "<cword>"
+        local filename = vim.fn.expand "%:t"
+        local output = '\nfmt.Printf("❤❤❤ tuannm: ['
+            .. filename
+            .. "]["
+            .. line
+            .. "]["
+            .. variable
+            .. ']: %+v\\n", '
+            .. variable
+            .. ")"
+        vim.api.nvim_input(output)
+        vim.api.nvim_command "startinsert!"
+        vim.api.nvim_input "<Esc>"
     else
         vim.api.nvim_feedkeys("<C-l>", "n", true)
     end
