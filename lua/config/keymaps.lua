@@ -69,6 +69,7 @@ keymap("n", "<leader>gdc", "<cmd>:DiffviewClose<CR>", opts)
 keymap("n", "<leader>gdf", "<cmd>:DiffviewRefresh<CR>", opts)
 keymap("n", "<leader>gg", "<cmd>:Neogit<CR>", opts)
 keymap("n", "<leader>gf", "<cmd>:NeogitResetState<CR>", opts)
+keymap("n", "<leader>gl", "<cmd>lua _LAZYGIT_TOGGLE()<CR>", opts)
 
 -- Comment
 keymap("n", "<leader>/", "<cmd>lua require('Comment.api').toggle.linewise.current()<CR>", opts)
