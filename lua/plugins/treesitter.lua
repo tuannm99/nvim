@@ -4,6 +4,7 @@ return {
     build = ":TSUpdate",
     priority = 500,
     config = function(_, opts)
+        require("nvim-treesitter.install").prefer_git = true
         local treesitter = require "nvim-treesitter"
         local configs = require "nvim-treesitter.configs"
 

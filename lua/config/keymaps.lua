@@ -219,6 +219,9 @@ keymap("n", "<leader>s3", ':lua require("harpoon.ui").nav_file(3)<CR>', opts)
 keymap("n", "<leader>s4", ':lua require("harpoon.ui").nav_file(4)<CR>', opts)
 keymap("n", "<leader>s5", ':lua require("harpoon.ui").nav_file(5)<CR>', opts)
 keymap("n", "<leader>s6", ':lua require("harpoon.ui").nav_file(6)<CR>', opts)
+keymap("n", "<leader>s7", ':lua require("harpoon.ui").nav_file(7)<CR>', opts)
+keymap("n", "<leader>s8", ':lua require("harpoon.ui").nav_file(8)<CR>', opts)
+keymap("n", "<leader>s9", ':lua require("harpoon.ui").nav_file(9)<CR>', opts)
 
 keymap("n", "<leader>S", '<cmd>lua require("spectre").toggle()<CR>', { desc = "Toggle Spectre" })
 keymap(

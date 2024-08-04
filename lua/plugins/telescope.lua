@@ -1,14 +1,14 @@
 return {
-    {
-        "nvim-telescope/telescope-fzf-native.nvim",
-        build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release"
-    },
+    -- {
+    --     "nvim-telescope/telescope-fzf-native.nvim",
+    --     build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release"
+    -- },
     {
         "nvim-telescope/telescope.nvim",
         dependencies = {
             "ThePrimeagen/harpoon",
             "nvim-telescope/telescope-dap.nvim",
-            "nvim-telescope/telescope-fzf-native.nvim",
+            -- "nvim-telescope/telescope-fzf-native.nvim",
         },
         event = "VeryLazy",
         config = function()
@@ -46,7 +46,7 @@ return {
 
             telescope.load_extension "dap"
             telescope.load_extension "harpoon"
-            telescope.load_extension "fzf"
+            -- telescope.load_extension "fzf"
         end,
     },
     {
