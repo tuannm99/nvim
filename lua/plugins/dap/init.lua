@@ -50,4 +50,12 @@ return {
         lazy = true,
         build = "npm install --legacy-peer-deps && npx gulp vsDebugServerBundle && mv dist out",
     },
+
+    {
+        "leoluz/nvim-dap-go",
+        lazy = true,
+        dependencies = { "mfussenegger/nvim-dap" },
+        -- build = "go install github.com/go-delve/delve/cmd/dlv"
+        -- export PATH="$PATH:$(go env GOPATH)/bin"
+    },
 }

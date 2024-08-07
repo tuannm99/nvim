@@ -93,3 +93,29 @@ dap.configurations["typescript"] = {
         runtimeExecutable = "ts-node",
     },
 }
+
+require("dap-go").setup {
+    -- dap_configurations = {
+    --     {
+    --         type = "go",
+    --         name = "Debug (Build Flags & Arguments)",
+    --         request = "launch",
+    --         program = "${file}",
+    --         args = require("dap-go").get_arguments,
+    --         buildFlags = require("dap-go").get_build_flags,
+    --     },
+    -- },
+    delve = {
+        path = "dlv",
+        initialize_timeout_sec = 20,
+        port = "${port}",
+        args = {},
+        build_flags = {},
+        detached = vim.fn.has "win32" == 0,
+        cwd = nil,
+    },
+    -- options related to running closest test
+    tests = {
+        verbose = false,
+    },
+}
