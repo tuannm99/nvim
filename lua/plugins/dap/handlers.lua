@@ -109,13 +109,13 @@ require("dap-go").setup {
         path = "dlv",
         initialize_timeout_sec = 20,
         port = "${port}",
-        args = {},
+        args = { "--log", "--log-dest=debugger,stdout" },
         build_flags = {},
-        detached = vim.fn.has "win32" == 0,
+        detached = false, -- vim.fn.has "win32" == 0,
         cwd = nil,
     },
     -- options related to running closest test
     tests = {
-        verbose = false,
+        verbose = true,
     },
 }
