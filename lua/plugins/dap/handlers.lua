@@ -109,7 +109,7 @@ require("dap-go").setup {
         path = "dlv",
         initialize_timeout_sec = 20,
         port = "${port}",
-        args = { "--log", "--log-dest=debugger,stdout" },
+        args = { "--log", "--log-output=stdout" },
         build_flags = {},
         detached = false, -- vim.fn.has "win32" == 0,
         cwd = nil,
