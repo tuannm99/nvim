@@ -93,7 +93,7 @@ return {
                     extra_args = {
                         "--single-quote",
                         "--no-semi",
-                        "--tab-width=4",
+                        "--tab-width=2",
                         "--print-width=100",
                         "--bracket-spacing=false",
                         "--trailing-comma=none",

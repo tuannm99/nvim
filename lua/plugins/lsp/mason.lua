@@ -56,5 +56,13 @@ for _, server in pairs(servers) do
         opts = vim.tbl_deep_extend("force", conf_opts, opts)
     end
 
+    -- custom config for WORK
+    if server == "pyright" then
+        opts.settings = opts.settings or {}
+        opts.settings.python = opts.settings.python or {}
+        opts.settings.python.analysis = opts.settings.python.analysis or {}
+        opts.settings.python.analysis.extraPaths = { "./", "./common_lib" }
+    end
+
     lspconfig[server].setup(opts)
 end
