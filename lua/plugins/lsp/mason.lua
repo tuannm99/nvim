@@ -66,3 +66,29 @@ for _, server in pairs(servers) do
 
     lspconfig[server].setup(opts)
 end
+
+-- !!!! SUPORTING PYTHON2 (hover, go-to-implement, cmp for reading old projects -_-)
+-- python2 -m virtualenv venv
+-- . venv/bin/activate
+-- REQUIREMENTS for venv -> pip install python-language-server autopep8 pynvim neovim debugpy
+-- this only work when existed virtualenv on python2 (with this very old package installed) -> python-language-server
+-- we are should using both pyright and pyls but the linter for python3 (pyright) is very annoying
+local venv_pylsp_path = vim.fn.getcwd() .. "/venv/bin/pyls"
+if vim.fn.filereadable(venv_pylsp_path) == 1 then
+    -- pylsp is a fork of pyls, note that the venv path is saved as name `pyls`
+    -- but nvimlsp-server is `pylsp`
+    lspconfig.pylsp.setup {
+        cmd = { venv_pylsp_path },
+        on_attach = require("plugins.lsp.handlers").on_attach,
+        capabilities = require("plugins.lsp.handlers").capabilities,
+        settings = {
+            python = {
+                analysis = {
+                    extraPaths = { "./", "./common_lib" },
+                },
+            },
+        },
+    }
+else
+    print "pyls not found in virtual environment, no setup python2"
+end
