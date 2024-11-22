@@ -1,7 +1,7 @@
 return {
     {
         "mfussenegger/nvim-dap",
-        lazy = false,
+        lazy = true,
         dependencies = {
             "ravenxrz/DAPInstall.nvim",
         },
@@ -12,7 +12,6 @@ return {
 
     {
         "theHamsta/nvim-dap-virtual-text",
-
         lazy = true,
         dependencies = {
             "mfussenegger/nvim-dap",

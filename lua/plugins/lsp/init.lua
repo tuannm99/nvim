@@ -174,6 +174,19 @@ return {
         end,
     },
 
+    {
+        "nvim-neotest/neotest",
+        dependencies = {
+            "nvim-neotest/nvim-nio",
+            "nvim-lua/plenary.nvim",
+            "antoinemadec/FixCursorHold.nvim",
+            "nvim-treesitter/nvim-treesitter",
+        },
+        config = function()
+            require "plugins.lsp.test"
+        end,
+    },
+
     -- {
     --     "https://gitlab.com/schrieveslaach/sonarlint.nvim",
     --     lazy = false,
@@ -187,16 +200,6 @@ return {
         event = "VeryLazy",
         config = function()
             require "plugins.lsp.externals.ts-tools"
-        end,
-    },
-
-    {
-        "mrcjkb/rustaceanvim",
-        dependencies = { "neovim/nvim-lspconfig" },
-        version = "^4", -- Recommended
-        ft = { "rust" },
-        config = function()
-            require("plugins.lsp.externals.rust").setup()
         end,
     },
 }
