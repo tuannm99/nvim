@@ -39,7 +39,7 @@ return {
 
     {
         "nvimdev/lspsaga.nvim",
-        commit = "3112b7aba57653199ad20198f477d94781bb2310",
+        -- commit = "3112b7aba57653199ad20198f477d94781bb2310",
         event = "LspAttach",
         config = function()
             require("lspsaga").setup {}
@@ -174,6 +174,22 @@ return {
         end,
     },
 
+    {
+        "nvim-neotest/neotest",
+        dependencies = {
+            "nvim-neotest/nvim-nio",
+            "nvim-lua/plenary.nvim",
+            "antoinemadec/FixCursorHold.nvim",
+            "nvim-treesitter/nvim-treesitter",
+            "nvim-neotest/neotest-go",
+            "nvim-neotest/neotest-python",
+            "rouge8/neotest-rust"
+        },
+        config = function()
+            require "plugins.lsp.test"
+        end,
+    },
+
     -- {
     --     "https://gitlab.com/schrieveslaach/sonarlint.nvim",
     --     lazy = false,
@@ -187,16 +203,6 @@ return {
         event = "VeryLazy",
         config = function()
             require "plugins.lsp.externals.ts-tools"
-        end,
-    },
-
-    {
-        "mrcjkb/rustaceanvim",
-        dependencies = { "neovim/nvim-lspconfig" },
-        version = "^4", -- Recommended
-        ft = { "rust" },
-        config = function()
-            require("plugins.lsp.externals.rust").setup()
         end,
     },
 }

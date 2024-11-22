@@ -17,7 +17,7 @@ require("mason").setup {
 local servers = {
     "prismals",
     "gopls",
-    -- "rust_analyzer",
+    "rust_analyzer",
     "cssls",
     "html",
     "pyright",

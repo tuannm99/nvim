@@ -1,6 +1,6 @@
 local dap = require "dap"
 
--- python
+-- python debug
 local function get_venv()
     local cwd = vim.fn.getcwd()
     if vim.fn.executable(cwd .. "/venv/bin/python") == 1 then
@@ -15,10 +15,9 @@ local function get_venv()
 end
 require("dap-python").setup(get_venv())
 
+-- js/ts debug
 require("dap-vscode-js").setup {
-    -- node_path = "node", -- Path of node executable. Defaults to $NODE_PATH, and then "node"
-    debugger_path = vim.fn.stdpath "data" .. "/lazy/vscode-js-debug", -- Path to vscode-js-debug installation.
-    -- debugger_cmd = { "extension" }, -- Command to use to launch the debug server. Takes precedence over `node_path` and `debugger_path`.
+    debugger_path = vim.fn.stdpath "data" .. "/lazy/vscode-js-debug",
     adapters = {
         "chrome",
         "pwa-node",
@@ -28,7 +27,7 @@ require("dap-vscode-js").setup {
         "pwa-extensionHost",
         "node",
         "chrome",
-    }, -- which adapters to register in nvim-dap
+    },
     -- log_file_path = "(stdpath cache)/dap_vscode_js.log" -- Path for file logging
     -- log_file_level = false -- Logging level for output to file. Set to false to disable file logging.
     -- log_console_level = vim.log.levels.ERROR -- Logging level for output to console. Set to false to disable console output.
@@ -68,18 +67,6 @@ dap.configurations["typescript"] = {
 
         runtimeExecutable = "nest",
         args = { "start", "--debug", "--watch" },
-        -- port = 3000,
-        -- env = {
-        --     NODE_ENV = "dev",
-        -- },
-        -- outFiles = {
-        --     "${workspaceFolder}/dist/main.js",
-        -- },
-        -- sourceMapPathOverrides = {
-        --     ["webpack:///./src/*"] = "${workspaceFolder}/src/*",
-        --     ["webpack:///src/*"] = "${workspaceFolder}/src/*",
-        --     ["webpack:///*"] = "*",
-        -- }
     },
     {
         type = "pwa-node",
@@ -94,28 +81,64 @@ dap.configurations["typescript"] = {
     },
 }
 
+-- go debug
 require("dap-go").setup {
-    -- dap_configurations = {
-    --     {
-    --         type = "go",
-    --         name = "Debug (Build Flags & Arguments)",
-    --         request = "launch",
-    --         program = "${file}",
-    --         args = require("dap-go").get_arguments,
-    --         buildFlags = require("dap-go").get_build_flags,
-    --     },
-    -- },
     delve = {
         path = "dlv",
         initialize_timeout_sec = 20,
         port = "${port}",
         args = { "--log", "--log-output=stdout" },
         build_flags = {},
-        detached = false, -- vim.fn.has "win32" == 0,
+        detached = false,
         cwd = nil,
     },
-    -- options related to running closest test
     tests = {
         verbose = true,
+    },
+}
+
+-- rust debug
+local mason_registry = require "mason-registry"
+local codelldb_root = mason_registry.get_package("codelldb"):get_install_path() .. "/extension/"
+local codelldb_path = codelldb_root .. "adapter/codelldb"
+-- local liblldb_path = codelldb_root .. "lldb/lib/liblldb.so"
+
+dap.adapters.codelldb = {
+    type = "server",
+    port = "${port}",
+    executable = {
+        command = codelldb_path,
+        args = {
+            -- "--liblldb",
+            -- liblldb_path,
+            "--port",
+            "${port}",
+        },
+    },
+}
+dap.configurations.rust = {
+    {
+        name = "Rust debug",
+        type = "codelldb",
+        request = "launch",
+        program = function()
+            vim.fn.jobstart "cargo build"
+            return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/target/debug/", "file")
+        end,
+        cwd = "${workspaceFolder}",
+        stopOnEntry = true,
+    },
+    {
+        name = "Rust debug current",
+        type = "codelldb",
+        request = "launch",
+        program = function()
+            vim.fn.jobstart "cargo build"
+            local cargo_toml = vim.fn.getcwd() .. "/Cargo.toml"
+            local project_name = vim.fn.system("basename " .. vim.fn.fnamemodify(cargo_toml, ":h"))
+            return vim.fn.getcwd() .. "/target/debug/" .. vim.fn.trim(project_name)
+        end,
+        cwd = "${workspaceFolder}",
+        stopOnEntry = true,
     },
 }

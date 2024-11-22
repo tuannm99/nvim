@@ -5,7 +5,6 @@ return {
     priority = 500,
     config = function(_, opts)
         require("nvim-treesitter.install").prefer_git = true
-        local treesitter = require "nvim-treesitter"
         local configs = require "nvim-treesitter.configs"
 
         configs.setup {
@@ -27,6 +26,9 @@ return {
                 "prisma",
                 "rust",
                 "terraform",
+                "sql",
+                "proto",
+                "toml",
             },
             ignore_install = { "" },
             sync_install = false,
@@ -66,10 +68,6 @@ return {
                     "hbs",
                 },
             },
-            -- context_commentstring = {
-            --     enable = true,
-            --     enable_autocmd = false,
-            -- },
         }
     end,
 }
