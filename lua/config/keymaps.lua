@@ -7,7 +7,7 @@ vim.keymap.set("", "<Space>", "<Nop>", { silent = true })
 vim.g.mapleader = " "
 
 keymap("n", "s", "<Nop>", opts)
-keymap("", "q", "<Nop>", opts)
+-- keymap("", "q", "<Nop>", opts)
 keymap("n", "<c-z>", "<nop>", opts)
 
 -- Modes
@@ -34,8 +34,10 @@ keymap("n", "<A-Right>", ":vertical resize +2<CR>", opts)
 -- Navigate buffers
 keymap("n", "<S-l>", ":bnext<CR>", opts)
 keymap("n", "<S-h>", ":bprevious<CR>", opts)
-keymap("n", "<S-n>", ":cnext<CR>", opts)
-keymap("n", "<S-p>", ":cNext<CR>", opts)
+
+-- Navigate qf
+keymap("n", "<leader>j", ":cnext<CR>", opts)
+keymap("n", "<leader>k", ":cNext<CR>", opts)
 
 -- Clear highlights
 keymap("n", "<leader>h", "<cmd>nohlsearch<CR>", opts)
@@ -117,8 +119,7 @@ keymap("v", "<leader>lf", "<cmd>lua vim.lsp.buf.format{ async = true }<cr>", opt
 -- js only for finding nodejs index module
 keymap("n", "gs", "<cmd>TSToolsGoToSourceDefinition<CR>", opts)
 
--- custom log
-function Custom_log()
+keymap("n", "<leader>cl", function()
     local filetype = vim.bo.filetype
     local allowed_js_filetypes = { "javascript", "typescript", "javascriptreact", "typescriptreact", "html", "pug" }
     local allowed_python_filetypes = { "python" }
@@ -191,24 +192,15 @@ function Custom_log()
         vim.api.nvim_feedkeys("<C-l>", "n", true)
     end
     -- TODO: add more language
-end
+end, opts)
 
-keymap("n", "<leader>cl", ":lua Custom_log()<CR>", opts)
-
--- Define the key mapping function
-function FoldToggle()
-    -- Check if a fold exists at the current cursor position
+keymap("n", "ff", function()
     if vim.fn.foldclosed(vim.fn.line ".") ~= -1 then
-        -- If a fold exists, toggle the fold under the cursor between folded and unfolded states
         vim.cmd ":normal! za<CR>"
     else
-        -- If no fold exists, fold the text from the current cursor position to the matching closing bracket or parenthesis
         vim.cmd ":normal! zf%<CR>"
     end
-end
-
--- Define the key mapping using the foldToggle function
-keymap("n", "ff", ":lua FoldToggle()<CR>", opts)
+end, opts)
 
 -- harpoon
 keymap("n", "<leader>sj", ':lua require("harpoon.ui").toggle_quick_menu()<CR>', opts)
