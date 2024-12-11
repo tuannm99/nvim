@@ -29,7 +29,7 @@ local servers = {
     "lua_ls",
     "tailwindcss",
     "sqlls",
-    -- "tsserver",
+    "ts_ls",
 }
 require("mason-lspconfig").setup {
     ensure_installed = servers,
@@ -54,14 +54,6 @@ for _, server in pairs(servers) do
     local require_ok, conf_opts = pcall(require, "plugins.lsp.settings." .. server)
     if require_ok then
         opts = vim.tbl_deep_extend("force", conf_opts, opts)
-    end
-
-    -- custom config for WORK
-    if server == "pyright" then
-        opts.settings = opts.settings or {}
-        opts.settings.python = opts.settings.python or {}
-        opts.settings.python.analysis = opts.settings.python.analysis or {}
-        opts.settings.python.analysis.extraPaths = { "./", "./common_lib" }
     end
 
     lspconfig[server].setup(opts)
