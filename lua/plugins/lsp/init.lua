@@ -94,7 +94,7 @@ return {
                         "--single-quote",
                         "--no-semi",
                         "--tab-width=2",
-                        "--print-width=100",
+                        "--print-width=80",
                         "--bracket-spacing=false",
                         "--trailing-comma=none",
                     },
@@ -198,11 +198,11 @@ return {
     --     end,
     -- },
 
-    {
-        "pmizio/typescript-tools.nvim",
-        event = "VeryLazy",
-        config = function()
-            require "plugins.lsp.externals.ts-tools"
-        end,
-    },
+    -- {
+    --     "pmizio/typescript-tools.nvim",
+    --     event = "VeryLazy",
+    --     config = function()
+    --         require "plugins.lsp.externals.ts-tools"
+    --     end,
+    -- },
 }

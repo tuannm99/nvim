@@ -82,5 +82,6 @@ if vim.fn.filereadable(venv_pylsp_path) == 1 then
         },
     }
 else
-    print "pyls not found in virtual environment, no setup python2"
+    -- disable pyright because it can't understand python2
+    lspconfig.pyright = nil
 end

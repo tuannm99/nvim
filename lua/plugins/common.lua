@@ -48,11 +48,6 @@ return {
         event = "VeryLazy",
     },
 
-    -- {
-    --     "tuannm99/filetype.nvim",
-    --     event = "VeryLazy",
-    -- },
-
     {
         "folke/which-key.nvim",
         event = "VeryLazy",
