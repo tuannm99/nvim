@@ -183,11 +183,23 @@ return {
             "nvim-treesitter/nvim-treesitter",
             "nvim-neotest/neotest-go",
             "nvim-neotest/neotest-python",
-            "rouge8/neotest-rust"
+            "rouge8/neotest-rust",
         },
         config = function()
             require "plugins.lsp.test"
         end,
+    },
+
+    {
+        "folke/lazydev.nvim",
+        ft = "lua",
+        opts = {
+            library = {
+                -- See the configuration section for more details
+                -- Load luvit types when the `vim.uv` word is found
+                -- { path = "${3rd}/luv/library", words = { "vim%.uv" } },
+            },
+        },
     },
 
     -- {
