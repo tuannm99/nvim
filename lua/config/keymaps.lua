@@ -241,6 +241,8 @@ keymap("n", "<leader>u", "<cmd>:UndotreeToggle<CR>")
 
 -- trouble -> until find comfort keymap
 keymap("n", "<leader>tt", "<cmd>:Trouble<CR>")
+-- doc generator
+keymap("n", "<Leader>nf", ":lua require('neogen').generate()<CR>", opts)
 
 -- unittest
 keymap("n", "<leader>ts", '<cmd>:lua require("neotest").summary.toggle()<CR>', opts)
@@ -249,7 +251,7 @@ keymap("n", "<leader>top", '<cmd>:lua require("neotest").output.open({ enter = t
 keymap("n", "<leader>toc", '<cmd>:lua require("neotest").output.clear()<CR>', opts)
 keymap("n", "<leader>tr", '<cmd>:lua require("neotest").run.run()<CR>', opts)
 keymap("n", "<leader>ta", '<cmd>:lua require("neotest").run.run(vim.fn.expand("%"))<CR>', opts)
-keymap("n", "<leader>tdr", '<cmd>:lua require("neotest").run.run(vim.fn.expand("%"))<CR>', opts)
+keymap("n", "<leader>tdr", '<cmd>:lua require("neotest").run.run({strategy = "dap"})<CR>', opts)
 keymap("n", "<leader>tda", '<cmd>:lua require("neotest").run.run({vim.fn.expand("%"), strategy = "dap"})<CR>', opts)
 keymap("n", "<leader>th", '<cmd>:lua require("neotest").jump.prev({ status = "failed" })<CR>', opts)
 keymap("n", "<leader>tl", '<cmd>:lua require("neotest").jump.next({ status = "failed" })<CR>', opts)
