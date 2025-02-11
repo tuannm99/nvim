@@ -30,6 +30,7 @@ local servers = {
     "tailwindcss",
     "sqlls",
     "ts_ls",
+    "angularls"
 }
 require("mason-lspconfig").setup {
     ensure_installed = servers,
