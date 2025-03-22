@@ -105,6 +105,7 @@ return {
                 formatting.autopep8.with { extra_args = { "--max-line-length", "120", "--experimental" } },
                 formatting.stylua.with {},
                 formatting.sql_formatter.with {},
+                formatting.golines.with { extra_args = { "-m", "120" } }
             }
 
             if should_config_eslint() then

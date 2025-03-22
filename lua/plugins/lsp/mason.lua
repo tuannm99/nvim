@@ -17,6 +17,7 @@ require("mason").setup {
 local servers = {
     "prismals",
     "gopls",
+    "golangci_lint_ls",
     "rust_analyzer",
     "cssls",
     "html",
