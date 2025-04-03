@@ -53,7 +53,6 @@ return {
     {
         "nvimtools/none-ls.nvim",
         event = "LspAttach",
-        commit = "de747e01f732fbb9e48d3b87a7653c633835c9e7",
         config = function()
             local null_ls_status_ok, null_ls = pcall(require, "null-ls")
             if not null_ls_status_ok then
@@ -102,7 +101,7 @@ return {
             end
 
             local sources = {
-                formatting.autopep8.with { extra_args = { "--max-line-length", "120", "--experimental" } },
+                -- formatting.autopep8.with { extra_args = { "--max-line-length", "120", "--experimental" } },
                 formatting.stylua.with {},
                 formatting.sql_formatter.with {},
                 formatting.golines.with { extra_args = { "-m", "120" } }
