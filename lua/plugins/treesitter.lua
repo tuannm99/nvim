@@ -6,7 +6,6 @@ return {
     config = function(_, opts)
         require("nvim-treesitter.install").prefer_git = true
         local configs = require "nvim-treesitter.configs"
-
         configs.setup {
             ensure_installed = {
                 "vue",
@@ -29,6 +28,7 @@ return {
                 "sql",
                 "proto",
                 "toml",
+                "templ",
             },
             ignore_install = { "" },
             sync_install = false,
@@ -66,6 +66,7 @@ return {
                     "glimmer",
                     "handlebars",
                     "hbs",
+                    "templ",
                 },
             },
         }
