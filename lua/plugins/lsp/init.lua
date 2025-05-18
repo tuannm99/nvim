@@ -226,4 +226,14 @@ return {
     --         require "plugins.lsp.externals.ts-tools"
     --     end,
     -- },
+
+    {
+        "olexsmir/gopher.nvim",
+        ft = "go",
+        lazy = false,
+        build = function()
+            vim.cmd.GoInstallDeps()
+        end,
+        opts = {},
+    }
 }
