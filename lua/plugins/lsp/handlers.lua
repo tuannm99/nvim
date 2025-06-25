@@ -74,7 +74,7 @@ vim.api.nvim_create_user_command("GoToDefinitionOrTypeDefinition", function()
 
     if has_definition_provider then
         -- Try to go to definition first
-        local params = vim.lsp.util.make_position_params(0)
+        local params = vim.lsp.util.make_position_params(0, 'utf-8')
         local definition_result = vim.lsp.buf_request_sync(0, "textDocument/definition", params, 1000)
         local has_definition = false
 
