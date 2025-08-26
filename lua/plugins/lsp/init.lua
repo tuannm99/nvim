@@ -227,13 +227,13 @@ return {
     --     end,
     -- },
 
-    {
-        "olexsmir/gopher.nvim",
-        ft = "go",
-        lazy = false,
-        build = function()
-            vim.cmd.GoInstallDeps()
-        end,
-        opts = {},
-    }
+    -- {
+    --     "olexsmir/gopher.nvim",
+    --     ft = "go",
+    --     lazy = false,
+    --     build = function()
+    --         vim.cmd.GoInstallDeps()
+    --     end,
+    --     opts = {},
+    -- }
 }

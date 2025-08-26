@@ -40,8 +40,8 @@ return {
                 end,
             },
             indent = {
-                enable = false,
-                disable = { "python", "css", "rust" },
+                enable = true,
+                -- disable = { "python", "css", "rust" },
             },
             autotag = {
                 enable = true,

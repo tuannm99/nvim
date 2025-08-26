@@ -34,6 +34,13 @@ return {
                 return
             end
 
+            local cmplines_status_ok, cmplines = pcall(require, "cmplines")
+            if not cmplines_status_ok then
+                return
+            end
+
+            cmplines.setup()
+
             local check_backspace = function()
                 local col = vim.fn.col "." - 1
                 return col == 0 or vim.fn.getline("."):sub(col, col):match "%s"

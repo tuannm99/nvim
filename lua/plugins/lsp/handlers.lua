@@ -62,7 +62,7 @@ M.setup = function()
 end
 
 vim.api.nvim_create_user_command("GoToDefinitionOrTypeDefinition", function()
-    local clients = vim.lsp.get_clients({ bufnr = 0 })
+    local clients = vim.lsp.get_clients { bufnr = 0 }
     local has_definition_provider = false
 
     for _, client in ipairs(clients) do
@@ -74,8 +74,9 @@ vim.api.nvim_create_user_command("GoToDefinitionOrTypeDefinition", function()
 
     if has_definition_provider then
         -- Try to go to definition first
-        local params = vim.lsp.util.make_position_params(0, 'utf-8')
+        local params = vim.lsp.util.make_position_params(0, "utf-8")
         local definition_result = vim.lsp.buf_request_sync(0, "textDocument/definition", params, 1000)
+
         local has_definition = false
 
         if definition_result then
@@ -83,7 +84,7 @@ vim.api.nvim_create_user_command("GoToDefinitionOrTypeDefinition", function()
                 if res.result and #res.result > 0 then
                     has_definition = true
                     -- Use Lspsaga for goto_definition
-                    vim.cmd("Lspsaga goto_definition")
+                    vim.cmd "Lspsaga goto_definition"
                     break
                 end
             end
@@ -91,11 +92,11 @@ vim.api.nvim_create_user_command("GoToDefinitionOrTypeDefinition", function()
 
         -- If no definition found, try to go to type definition
         if not has_definition then
-            vim.cmd("Lspsaga goto_type_definition")
+            vim.cmd "Lspsaga goto_type_definition"
         end
     else
         -- Fallback to type definition directly
-        vim.cmd("Lspsaga goto_type_definition")
+        vim.cmd "Lspsaga goto_type_definition"
     end
 end, {})
 
