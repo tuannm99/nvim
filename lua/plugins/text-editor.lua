@@ -3,9 +3,6 @@ return {
     {
         "windwp/nvim-autopairs",
         lazy = false,
-        dependencies = {
-            "hrsh7th/nvim-cmp",
-        },
         opts = function()
             return {
                 check_ts = true, -- treesitter integration
@@ -30,13 +27,11 @@ return {
             }
         end,
         config = function(_, opts)
-            local autopairs = require "nvim-autopairs"
+            local status_ok, autopairs = pcall(require, "nvim-autopairs")
+            if not status_ok then
+                return
+            end
             autopairs.setup(opts)
-
-            local cmp_autopairs = require "nvim-autopairs.completion.cmp"
-            local cmp = require "cmp"
-
-            cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done {})
         end,
     },
 
@@ -133,7 +128,7 @@ return {
             }
 
             local spaces = function()
-                return "spaces: " .. vim.api.nvim_buf_get_option(0, "shiftwidth")
+                return "spaces: " .. vim.api.nvim_get_option_value("shiftwidth", { buf = 0 })
             end
 
             lualine.setup {
