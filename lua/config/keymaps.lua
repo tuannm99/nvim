@@ -6,6 +6,10 @@ local opts = { silent = true }
 vim.keymap.set("", "<Space>", "<Nop>", { silent = true })
 vim.g.mapleader = " "
 
+vim.keymap.set("c", "<C-j>", "<Nop>")
+vim.keymap.set("c", "<C-k>", "<Nop>")
+
+
 keymap("n", "s", "<Nop>", opts)
 -- keymap("", "q", "<Nop>", opts)
 keymap("n", "<c-z>", "<nop>", opts)
