@@ -1,10 +1,13 @@
 return {
     settings = {
         gopls = {
-            gofumt = true
-        }
+            gofumt = true,
+            analyzers = {
+                modernize = false,
+            },
+        },
     },
     flags = {
-        debounce_text_changes = 120
-    }
+        debounce_text_changes = 120,
+    },
 }
