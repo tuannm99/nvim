@@ -60,10 +60,32 @@ return {
                 },
 
                 cmdline = {
+                    enabled = true,
+
                     keymap = {
-                        preset = "inherit", -- reuse insert keymap
+                        preset = "cmdline",
                         ["<C-j>"] = { "select_next", "fallback" },
                         ["<C-k>"] = { "select_prev", "fallback" },
+                        -- ["<CR>"] = { "accept_and_enter", "fallback" },
+                    },
+
+                    sources = function()
+                        local t = vim.fn.getcmdtype()
+                        if t == ":" or t == "@" then
+                            return { "cmdline", "path", "buffer" }
+                        end
+                        if t == "/" or t == "?" then
+                            return { "buffer" }
+                        end
+                        return {}
+                    end,
+
+                    completion = {
+                        menu = {
+                            auto_show = function()
+                                return vim.fn.getcmdtype() == ":"
+                            end,
+                        },
                     },
                 },
 

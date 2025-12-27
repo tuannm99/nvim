@@ -1,23 +1,9 @@
-require("mason").setup {
-    pip = {
-        upgrade_pip = true,
-    },
-    ui = {
-        border = "none",
-        icons = {
-            package_installed = "✓",
-            package_pending = "➜",
-            package_uninstalled = "✗",
-        },
-    },
-    log_level = vim.log.levels.INFO,
-    max_concurrent_installers = 4,
-}
+require("mason").setup {}
 
 local servers = {
     "prismals",
     "gopls",
-    "golangci_lint_ls",
+    -- "golangci_lint_ls",
     "rust_analyzer",
     "cssls",
     "html",
@@ -31,18 +17,16 @@ local servers = {
     "tailwindcss",
     "sqlls",
     "ts_ls",
-    "angularls",
+    -- "angularls",
     "templ",
 }
--- require("mason-lspconfig").setup {
--- ensure_installed = servers,
--- automatic_installation = true,
--- }
 
-local lspconfig_status_ok, lspconfig = pcall(require, "lspconfig")
-if not lspconfig_status_ok then
-    return
-end
+require("mason-lspconfig").setup {
+    ensure_installed = servers,
+    automatic_installation = true,
+}
+
+local lspconfig = require "lspconfig"
 
 local opts = {}
 
@@ -59,8 +43,9 @@ for _, server in pairs(servers) do
         opts = vim.tbl_deep_extend("force", conf_opts, opts)
     end
 
-    lspconfig[server].setup(opts)
+    vim.lsp.config(server, opts)
 end
+vim.lsp.enable(servers)
 
 -- !!!! SUPORTING PYTHON2 (hover, go-to-implement, cmp for reading old projects -_-)
 -- python2 -m virtualenv venv
