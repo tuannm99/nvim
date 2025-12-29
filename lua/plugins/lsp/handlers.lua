@@ -10,55 +10,20 @@ M.capabilities.textDocument.completion.completionItem.snippetSupport = true
 M.capabilities = blink_cmp_lsp.get_lsp_capabilities(M.capabilities)
 
 M.setup = function()
-    local signs = {
-
-        { name = "DiagnosticSignError" },
-        { name = "DiagnosticSignWarn" },
-        { name = "DiagnosticSignHint" },
-        { name = "DiagnosticSignInfo" },
-    }
-
-    for _, sign in ipairs(signs) do
-        vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = "" })
+    local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
+    for type, icon in pairs(signs) do
+        local hl = "DiagnosticSign" .. type
+        vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
     end
 
-    local config = {
-        underline = {
-            severity = {
-                min = vim.diagnostic.severity.INFO,
-                max = vim.diagnostic.severity.WARN,
-            },
-        },
-        signs = {
-            active = signs, -- show signs
-        },
-        update_in_insert = true,
+    vim.diagnostic.config {
+        virtual_text = { severity = { min = vim.diagnostic.severity.WARN } },
+        float = { border = "rounded", source = true },
+        signs = true,
+        underline = { severity = { min = vim.diagnostic.severity.WARN } },
+        update_in_insert = false,
         severity_sort = true,
-        float = {
-            focusable = true,
-            style = "minimal",
-            border = "rounded",
-            source = "always",
-            header = "",
-            prefix = "",
-        },
     }
-
-    vim.diagnostic.config(config)
-
-    vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-        border = "rounded",
-    })
-
-    vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
-        border = "rounded",
-    })
-
-    -- vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-    --     virtual_text = {
-    --         severity = { min = vim.diagnostic.severity.ERROR },
-    --     }
-    -- })
 end
 
 vim.api.nvim_create_user_command("GoToDefinitionOrTypeDefinition", function()

@@ -110,7 +110,7 @@ return {
                 formatting.yapf.with {},
                 formatting.stylua.with {},
                 formatting.sql_formatter.with {},
-                formatting.golines.with { extra_args = { "-m", "120" } }
+                formatting.golines.with { extra_args = { "-m", "120" } },
             }
 
             if should_config_eslint() then
