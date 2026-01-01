@@ -122,7 +122,7 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
     group = grp,
     pattern = { "*.go" },
     callback = function(args)
-        set_tabs(args.buf, 8)
+        set_tabs(args.buf, 4)
     end,
 })
 
