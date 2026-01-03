@@ -126,6 +126,15 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
     end,
 })
 
+-- rust
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+    group = grp,
+    pattern = { "*.rs" },
+    callback = function(args)
+        set_tabs(args.buf, 4)
+    end,
+})
+
 -- Makefile: must be tabs
 vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
     group = grp,
