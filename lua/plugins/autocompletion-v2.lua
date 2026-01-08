@@ -1,18 +1,5 @@
 return {
 
-    { "saadparwaiz1/cmp_luasnip" },
-
-    {
-        "L3MON4D3/LuaSnip",
-        version = "v2.*",
-        build = "make install_jsregexp",
-        dependencies = { "rafamadriz/friendly-snippets" },
-        event = "VeryLazy",
-        config = function()
-            require("luasnip.loaders.from_vscode").lazy_load {}
-        end,
-    },
-
     {
         "saghen/blink.cmp",
         -- use a release tag to download pre-built binaries
@@ -81,6 +68,12 @@ return {
                     end,
 
                     completion = {
+                        list = {
+                            selection = {
+                                preselect = false,
+                                auto_insert = false,
+                            },
+                        },
                         menu = {
                             auto_show = function()
                                 return vim.fn.getcmdtype() == ":"
@@ -107,7 +100,7 @@ return {
                     trigger = { show_on_keyword = true },
                     list = {
                         selection = {
-                            preselect = true,
+                            preselect = false,
                             auto_insert = true,
                         },
                     },
@@ -119,9 +112,9 @@ return {
                     default = { "lsp", "path", "snippets", "buffer" },
                 },
 
-                snippets = {
-                    preset = "luasnip",
-                },
+                -- snippets = {
+                --     preset = "luasnip",
+                -- },
 
                 signature = { enabled = true },
 
