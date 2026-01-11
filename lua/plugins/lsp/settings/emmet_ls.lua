@@ -1,7 +1,13 @@
 return {
     filetypes = {
-        "html", "css", "javascript", "typescript",
-        "javascriptreact", "typescriptreact", "rust", "templ",
+        "html",
+        "css",
+        "javascriptreact",
+        "typescriptreact",
+        -- "javascript",
+        -- "typescript",
+        -- "rust",
+        "templ",
     },
     init_options = {
         includeLanguages = {

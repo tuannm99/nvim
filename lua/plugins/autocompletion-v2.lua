@@ -67,19 +67,6 @@ return {
                         return {}
                     end,
 
-                    completion = {
-                        list = {
-                            selection = {
-                                preselect = false,
-                                auto_insert = false,
-                            },
-                        },
-                        menu = {
-                            auto_show = function()
-                                return vim.fn.getcmdtype() == ":"
-                            end,
-                        },
-                    },
                 },
 
                 appearance = {
@@ -100,7 +87,7 @@ return {
                     trigger = { show_on_keyword = true },
                     list = {
                         selection = {
-                            preselect = false,
+                            preselect = true,
                             auto_insert = true,
                         },
                     },

@@ -16,70 +16,70 @@ end
 require("dap-python").setup(get_venv())
 
 -- js/ts debug
-require("dap-vscode-js").setup {
-    debugger_path = vim.fn.stdpath "data" .. "/lazy/vscode-js-debug",
-    adapters = {
-        "chrome",
-        "pwa-node",
-        "pwa-chrome",
-        "pwa-msedge",
-        "node-terminal",
-        "pwa-extensionHost",
-        "node",
-        "chrome",
-    },
-    -- log_file_path = "(stdpath cache)/dap_vscode_js.log" -- Path for file logging
-    -- log_file_level = false -- Logging level for output to file. Set to false to disable file logging.
-    -- log_console_level = vim.log.levels.ERROR -- Logging level for output to console. Set to false to disable console output.
-}
+-- require("dap-vscode-js").setup {
+--     debugger_path = vim.fn.stdpath "data" .. "/lazy/vscode-js-debug",
+--     adapters = {
+--         "chrome",
+--         "pwa-node",
+--         "pwa-chrome",
+--         "pwa-msedge",
+--         "node-terminal",
+--         "pwa-extensionHost",
+--         "node",
+--         "chrome",
+--     },
+--     -- log_file_path = "(stdpath cache)/dap_vscode_js.log" -- Path for file logging
+--     -- log_file_level = false -- Logging level for output to file. Set to false to disable file logging.
+--     -- log_console_level = vim.log.levels.ERROR -- Logging level for output to console. Set to false to disable console output.
+-- }
 
 -- local js_based_languages = { "typescript", "javascript", "typescriptreact" }
-dap.configurations["javascript"] = {
-    {
-        type = "pwa-node",
-        request = "launch",
-        name = "Launch file",
-        program = "${file}",
-        cwd = vim.fn.getcwd(),
-        sourceMaps = true,
-        protocol = "inspector",
-        console = "integratedTerminal",
-    },
-}
-
-dap.configurations["typescript"] = {
-    { -- work on nestjs project
-        type = "pwa-node",
-        request = "launch",
-        name = "NestJS: Launch",
-        -- program = "${file}",
-        cwd = "${workspaceFolder}",
-        skipFiles = {
-            "<node_internals>/**",
-        },
-        sourceMaps = true,
-        resolveSourceMapLocations = {
-            "${workspaceFolder}/**",
-            "!**/node_modules/**",
-        },
-        protocol = "inspector",
-        console = "integratedTerminal",
-
-        runtimeExecutable = "nest",
-        args = { "start", "--debug", "--watch" },
-    },
-    {
-        type = "pwa-node",
-        request = "launch",
-        name = "ts-node - /dist source",
-        program = "${file}", -- or "${workspaceFolder}/src/index.js",
-        cwd = "${workspaceFolder}",
-        protocol = "inspector",
-        console = "integratedTerminal",
-        outFiles = { "${workspaceFolder}/dist/**/*.js" },
-        runtimeExecutable = "ts-node",
-    },
-}
+-- dap.configurations["javascript"] = {
+--     {
+--         type = "pwa-node",
+--         request = "launch",
+--         name = "Launch file",
+--         program = "${file}",
+--         cwd = vim.fn.getcwd(),
+--         sourceMaps = true,
+--         protocol = "inspector",
+--         console = "integratedTerminal",
+--     },
+-- }
+--
+-- dap.configurations["typescript"] = {
+--     { -- work on nestjs project
+--         type = "pwa-node",
+--         request = "launch",
+--         name = "NestJS: Launch",
+--         -- program = "${file}",
+--         cwd = "${workspaceFolder}",
+--         skipFiles = {
+--             "<node_internals>/**",
+--         },
+--         sourceMaps = true,
+--         resolveSourceMapLocations = {
+--             "${workspaceFolder}/**",
+--             "!**/node_modules/**",
+--         },
+--         protocol = "inspector",
+--         console = "integratedTerminal",
+--
+--         runtimeExecutable = "nest",
+--         args = { "start", "--debug", "--watch" },
+--     },
+--     {
+--         type = "pwa-node",
+--         request = "launch",
+--         name = "ts-node - /dist source",
+--         program = "${file}", -- or "${workspaceFolder}/src/index.js",
+--         cwd = "${workspaceFolder}",
+--         protocol = "inspector",
+--         console = "integratedTerminal",
+--         outFiles = { "${workspaceFolder}/dist/**/*.js" },
+--         runtimeExecutable = "ts-node",
+--     },
+-- }
 
 -- go debug
 require("dap-go").setup {
