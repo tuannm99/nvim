@@ -19,6 +19,7 @@ local servers = {
     "ts_ls",
     -- "angularls",
     "templ",
+    "clangd",
 }
 
 require("mason-lspconfig").setup {

@@ -3,7 +3,7 @@ return {
         python = {
             analysis = {
                 typeCheckingMode = "off",
-                extraPaths = { "./", "./common_lib" },
+                extraPaths = { "./", "./common_lib", "./report"  },
             },
         },
     },

@@ -29,15 +29,16 @@ return {
                 "proto",
                 "toml",
                 "templ",
+                "c",
             },
             ignore_install = { "" },
             sync_install = false,
             highlight = {
                 enable = true,
                 use_languagetree = true,
-                disable = function()
-                    return vim.b.large_buf
-                end,
+                -- disable = function()
+                --     return vim.b.large_buf
+                -- end,
             },
             indent = {
                 enable = true,
