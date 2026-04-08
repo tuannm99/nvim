@@ -1,11 +1,12 @@
 return {
     "nvim-treesitter/nvim-treesitter",
-    lazy = true,
+    lazy = false,
+    -- event = { "BufReadPost", "BufNewFile" },
     build = ":TSUpdate",
     priority = 500,
     config = function(_, opts)
         require("nvim-treesitter.install").prefer_git = true
-        local configs = require "nvim-treesitter.configs"
+        local configs = require "nvim-treesitter.config"
         configs.setup {
             ensure_installed = {
                 "vue",
