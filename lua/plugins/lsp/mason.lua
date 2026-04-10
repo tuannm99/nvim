@@ -20,6 +20,7 @@ local servers = {
     -- "angularls",
     "templ",
     "clangd",
+    "stylua",
 }
 
 require("mason-lspconfig").setup {

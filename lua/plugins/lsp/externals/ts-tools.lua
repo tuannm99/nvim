@@ -1,16 +1,10 @@
 local api = require "typescript-tools.api"
 
-local status_ok, illuminate = pcall(require, "illuminate")
-if not status_ok then
-    return
-end
-
 require("typescript-tools").setup {
     on_attach = function(client, bufnr)
         client.server_capabilities.documentFormattingProvider = false
         client.server_capabilities.documentRangeFormattingProvider = false
 
-        -- illuminate.on_attach(client)
         require("plugins.lsp.handlers").on_attach(client, bufnr)
     end,
 
