@@ -237,9 +237,6 @@ keymap(
     { desc = "Search on current file" }
 )
 
--- maximizer
-keymap("n", "<leader>m", "<cmd>:MaximizerToggle<CR>")
-
 -- undo tree
 keymap("n", "<leader>u", "<cmd>:UndotreeToggle<CR>")
 

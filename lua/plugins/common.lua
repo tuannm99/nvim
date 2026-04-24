@@ -44,11 +44,6 @@ return {
     },
 
     {
-        "szw/vim-maximizer",
-        event = "VeryLazy",
-    },
-
-    {
         "folke/which-key.nvim",
         event = "VeryLazy",
         config = function()
