@@ -26,13 +26,6 @@ vim.api.nvim_create_autocmd({ "TextYankPost" }, {
     end,
 })
 
--- vim.api.nvim_create_autocmd({ "BufWritePost" }, {
---     pattern = { "*.java" },
---     callback = function()
---         vim.lsp.codelens.refresh()
---     end,
--- })
-
 vim.api.nvim_create_autocmd({ "VimEnter" }, {
     callback = function()
         vim.cmd "hi link illuminatedWord LspReferenceText"
@@ -43,31 +36,9 @@ vim.api.nvim_create_autocmd({ "BufWinEnter" }, {
     callback = function()
         local line_count = vim.api.nvim_buf_line_count(0)
         if line_count >= 5000 then
-            vim.cmd "IlluminatePauseBuf"
+            pcall(vim.cmd, "IlluminatePauseBuf")
         end
     end,
-})
-
-local aug = vim.api.nvim_create_augroup("buf_large", { clear = true })
-
-vim.api.nvim_create_autocmd({ "BufReadPre" }, {
-    callback = function()
-        local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(vim.api.nvim_get_current_buf()))
-        if ok and stats and (stats.size > 100000) then
-            vim.b.large_buf = true
-            -- vim.cmd "syntax off"
-            local illuminate_ok, illuminate = pcall(require, "illuminate")
-            if illuminate_ok then
-                illuminate.pause_buf()
-            end
-            vim.opt_local.foldmethod = "manual"
-            vim.opt_local.spell = false
-        else
-            vim.b.large_buf = false
-        end
-    end,
-    group = aug,
-    pattern = "*",
 })
 
 local venv_path = vim.fn.getcwd() .. "/venv"

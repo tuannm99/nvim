@@ -214,30 +214,4 @@ return {
             },
         },
     },
-
-    -- {
-    --     "https://gitlab.com/schrieveslaach/sonarlint.nvim",
-    --     lazy = false,
-    --     config = function()
-    --         require "plugins.lsp.externals.sonarlint"
-    --     end,
-    -- },
-
-    -- {
-    --     "pmizio/typescript-tools.nvim",
-    --     event = "VeryLazy",
-    --     config = function()
-    --         require "plugins.lsp.externals.ts-tools"
-    --     end,
-    -- },
-
-    -- {
-    --     "olexsmir/gopher.nvim",
-    --     ft = "go",
-    --     lazy = false,
-    --     build = function()
-    --         vim.cmd.GoInstallDeps()
-    --     end,
-    --     opts = {},
-    -- }
 }

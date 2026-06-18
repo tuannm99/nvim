@@ -2,9 +2,6 @@ return {
     {
         "mfussenegger/nvim-dap",
         lazy = true,
-        dependencies = {
-            "ravenxrz/DAPInstall.nvim",
-        },
         config = function()
             require "plugins.dap.handlers"
         end,
@@ -36,18 +33,6 @@ return {
     {
         "mfussenegger/nvim-dap-python",
         lazy = true,
-    },
-
-    {
-        "mxsdev/nvim-dap-vscode-js",
-        lazy = true,
-        dependencies = { "mfussenegger/nvim-dap" },
-    },
-
-    {
-        "microsoft/vscode-js-debug",
-        lazy = true,
-        build = "npm install --legacy-peer-deps && npx gulp vsDebugServerBundle && mv dist out",
     },
 
     {

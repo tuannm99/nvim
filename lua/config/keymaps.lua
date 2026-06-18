@@ -9,7 +9,6 @@ vim.g.mapleader = " "
 vim.keymap.set("c", "<C-j>", "<Nop>")
 vim.keymap.set("c", "<C-k>", "<Nop>")
 
-
 keymap("n", "s", "<Nop>", opts)
 -- keymap("", "q", "<Nop>", opts)
 keymap("n", "<c-z>", "<nop>", opts)
@@ -75,8 +74,6 @@ keymap("n", "<leader>gdo", "<cmd>:DiffviewOpen<CR>", opts)
 keymap("n", "<leader>gdh", "<cmd>:DiffviewFileHistory<CR>", opts)
 keymap("n", "<leader>gdc", "<cmd>:DiffviewClose<CR>", opts)
 keymap("n", "<leader>gdf", "<cmd>:DiffviewRefresh<CR>", opts)
-keymap("n", "<leader>gg", "<cmd>:Neogit<CR>", opts)
-keymap("n", "<leader>gf", "<cmd>:NeogitResetState<CR>", opts)
 keymap("n", "<leader>gl", "<cmd>lua _LAZYGIT_TOGGLE()<CR>", opts)
 
 -- Comment
@@ -86,7 +83,6 @@ keymap("x", "<leader>/", '<ESC><CMD>lua require("Comment.api").toggle.linewise(v
 -- dap
 keymap("n", "<leader>db", "<cmd>lua require'dap'.toggle_breakpoint()<cr>", opts)
 keymap("n", "<leader>dd", "<cmd>lua require'dap'.clear_breakpoints()<cr>", opts)
-keymap("n", "<leader>ds", "<cmd>lua Start_debugging()<cr>", opts)
 keymap("n", "<leader>dc", "<cmd>lua require'dap'.continue()<cr>", opts)
 keymap("n", "<leader>di", "<cmd>lua require'dap'.step_into()<cr>", opts)
 keymap("n", "<leader>do", "<cmd>lua require'dap'.step_over()<cr>", opts)
@@ -115,13 +111,10 @@ keymap("n", "<leader>fdc", ":Telescope dap commands<cr>", opts)
 keymap("n", "<leader>fdf", ":Telescope dap frames <cr>", opts)
 keymap("n", "<leader>fdb", ":Telescope dap list_breakpoints <cr>", opts)
 keymap("n", "<leader>fdv", ":Telescope dap variables <cr>", opts)
-keymap("n", "<leader>fdf", ":Telescope dap frames <cr>", opts)
 
 -- Lsp
 keymap("n", "<leader>lf", "<cmd>lua vim.lsp.buf.format{ async = true }<cr>", opts)
 keymap("v", "<leader>lf", "<cmd>lua vim.lsp.buf.format{ async = true }<cr>", opts)
--- js only for finding nodejs index module
-keymap("n", "gs", "<cmd>TSToolsGoToSourceDefinition<CR>", opts)
 
 keymap("n", "<leader>cl", function()
     local filetype = vim.bo.filetype
@@ -248,7 +241,6 @@ keymap("n", "<Leader>nf", ":lua require('neogen').generate()<CR>", opts)
 -- unittest
 keymap("n", "<leader>ts", '<cmd>:lua require("neotest").summary.toggle()<CR>', opts)
 keymap("n", "<leader>to", '<cmd>:lua require("neotest").output.open({ enter = true })<CR>', opts)
-keymap("n", "<leader>top", '<cmd>:lua require("neotest").output.open({ enter = true })<CR>', opts)
 keymap("n", "<leader>toc", '<cmd>:lua require("neotest").output.clear()<CR>', opts)
 keymap("n", "<leader>tr", '<cmd>:lua require("neotest").run.run()<CR>', opts)
 keymap("n", "<leader>ta", '<cmd>:lua require("neotest").run.run(vim.fn.expand("%"))<CR>', opts)

@@ -5,7 +5,7 @@ return {
     },
 
     {
-        "kyazdani42/nvim-web-devicons",
+        "nvim-tree/nvim-web-devicons",
         lazy = false,
     },
 
@@ -51,10 +51,5 @@ return {
             vim.o.timeoutlen = 200
             require("which-key").setup {}
         end,
-    },
-
-    {
-        "LunarVim/bigfile.nvim",
-        lazy = false,
     },
 }

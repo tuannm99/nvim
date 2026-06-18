@@ -95,15 +95,15 @@ local function lsp_keymaps(bufnr)
 end
 
 M.on_attach = function(client, bufnr)
-    if client.name == "tsserver" then
-        client.server_capabilities.documentFormattingProvider = false
-    end
+    local disable_formatting = {
+        lua_ls = true,
+        pyright = true,
+        sumneko_lua = true,
+        ts_ls = true,
+        tsserver = true,
+    }
 
-    if client.name == "sumneko_lua" then
-        client.server_capabilities.documentFormattingProvider = false
-    end
-
-    if client.name == "pyright" then
+    if disable_formatting[client.name] then
         client.server_capabilities.documentFormattingProvider = false
     end
 
